@@ -1,0 +1,338 @@
+/* ══════════════════════════════════════════════════
+   TERMINAL.CSS
+   All terminal-specific styles live here so themes
+   can be implemented independently in the future.
+   Variables are defined under :root so they can be
+   overridden by a future [data-theme="*"] block.
+══════════════════════════════════════════════════ */
+
+/* ── Terminal CSS Variables ──────────────────────
+   To implement a terminal theme later, add a block like:
+     [data-term-theme="light"] { --term-bg: #1e2030; ... }
+   and toggle data-term-theme on .terminal-panel.
+─────────────────────────────────────────────────── */
+:root {
+    --term-bg:         #0a0a0a;
+    --term-surface:    #111111;
+    --term-bar-bg:     #161616;
+    --term-border:     #1c2c1c;
+    --term-shortcut-border: #182818;
+
+    /* Text colours — all tuned for ≥ 4.5:1 contrast on #0a0a0a */
+    --term-green:      #39ff14;   /* neon green  — primary accent  */
+    --term-green-mid:  #2ecc10;   /* mid green   — box borders     */
+    --term-green-dim:  #1a7a0a;   /* dim green   — unused in text  */
+    --term-cyan:       #00e5ff;   /* cyan        — key labels      */
+    --term-yellow:     #f0e060;   /* yellow      — warnings        */
+    --term-white:      #d0d0d0;   /* white       — body text       */
+    --term-gray:       #888888;   /* gray        — hints/comments  */
+    --term-red:        #ff5555;   /* red         — errors          */
+}
+
+/* ══════════════════════════════════════════════════
+   TERMINAL PANEL  (right column)
+   Background is ALWAYS dark — never inherits theme.
+══════════════════════════════════════════════════ */
+.terminal-panel {
+    background: var(--term-bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+    transition: flex-basis 0.3s cubic-bezier(0.4,0,0.2,1),
+                max-width  0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.main-wrap.terminal-hidden .terminal-panel {
+    flex: 0 0 0%;
+    max-width: 0;
+}
+
+/* Subtle CRT scanline texture — purely decorative */
+.terminal-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,.04) 2px,
+        rgba(0,0,0,.04) 4px
+    );
+}
+
+/* ── macOS-style titlebar ── */
+.term-bar {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem .8rem;
+    background: var(--term-bar-bg);
+    border-bottom: 1px solid #242424;
+    /* explicit bg — never inherits page theme */
+    color: var(--term-white);
+}
+
+.term-dot   { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.term-dot.r { background: #ff5f57; }
+.term-dot.y { background: #febc2e; }
+.term-dot.g { background: #28c840; }
+
+.term-bar-title {
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    color: #666;
+    margin: 0 auto;
+    letter-spacing: .5px;
+}
+
+/* ── Output area ── */
+.term-out {
+    flex: 1;
+    overflow-y: auto;
+    padding: .7rem .75rem;
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    line-height: 1.55;
+    background: var(--term-bg);   /* explicit — no theme leakage */
+    color: var(--term-white);
+}
+
+.term-out::-webkit-scrollbar { width: 3px; }
+.term-out::-webkit-scrollbar-track  { background: var(--term-bg); }
+.term-out::-webkit-scrollbar-thumb  { background: #2a2a2a; }
+
+/* ── Terminal line base ──
+   .tl  — every output line
+   .c-* — colour helpers; use these to colour
+          individual spans inside a line.
+─────────────────────────────────────────────── */
+.tl {
+    display: block;
+    white-space: pre;
+    background: var(--term-bg);   /* explicit — prevents light-theme bleed */
+    color: var(--term-white);
+    animation: termIn .12s ease both;
+}
+
+/* Colour helpers */
+.c-green   { color: var(--term-green); }
+.c-mid     { color: var(--term-green-mid); }
+.c-dim     { color: var(--term-green-dim); }
+.c-cyan    { color: var(--term-cyan); }
+.c-yellow  { color: var(--term-yellow); }
+.c-white   { color: var(--term-white); }
+.c-gray    { color: var(--term-gray); }
+.c-red     { color: var(--term-red); }
+.c-strike  { text-decoration: line-through; opacity: .5; }
+
+@keyframes termIn {
+    from { opacity: 0; transform: translateY(3px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ── Quick-command shortcut buttons ── */
+.term-shortcuts {
+    flex-shrink: 0;
+    padding: .45rem .6rem;
+    border-top: 1px solid var(--term-shortcut-border);
+    display: flex;
+    flex-direction: column;
+    gap: .22rem;
+    background: var(--term-bg);   /* explicit */
+}
+
+.term-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .28rem .5rem;
+    background: transparent;
+    border: 1px solid var(--term-shortcut-border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: .67rem;
+    color: var(--term-green-mid);
+    text-align: left;
+    transition: background .14s, border-color .14s, color .14s;
+}
+
+.term-btn:hover {
+    background: rgba(57,255,20,.07);
+    border-color: var(--term-green-mid);
+    color: var(--term-green);
+}
+
+.term-btn-left  { display: flex; align-items: center; gap: .38rem; }
+.term-btn-name  { color: var(--term-green); font-weight: 500; }
+.term-btn-desc  { color: var(--term-gray); font-size: .62rem; }
+.term-btn-arrow { opacity: .5; font-size: .65rem; color: var(--term-gray); }
+
+/* ── Command input row ── */
+.term-input-row {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: .45rem .75rem;
+    background: var(--term-bg);   /* explicit */
+    border-top: 1px solid #1a1a1a;
+}
+
+.term-prompt-label {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--term-green);
+    white-space: nowrap;
+    margin-right: .4rem;
+    flex-shrink: 0;
+}
+
+.term-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--term-white);
+    caret-color: var(--term-green);
+    min-width: 0;
+}
+.term-input::placeholder { color: #333; }
+
+/* ── Portrait / mobile overlay ── */
+.term-overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    background: rgba(10,10,10,.97);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+
+.term-overlay i {
+    font-size: 2rem;
+    color: var(--term-green-mid);
+    margin-bottom: .75rem;
+}
+
+.term-overlay-title {
+    font-family: var(--font-mono);
+    font-size: .82rem;
+    color: var(--term-green);
+    margin-bottom: .5rem;
+    font-weight: 500;
+}
+
+.term-overlay p {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--term-green-mid);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ══════════════════════════════════════════════════
+   TYPING STATE
+   Applied via JS while the char-reveal animation runs.
+   Dims interactive elements so the user knows to wait.
+══════════════════════════════════════════════════ */
+.terminal-panel.is-typing .term-btn {
+    opacity: 0.3;
+    pointer-events: none;
+}
+.terminal-panel.is-typing .term-input {
+    opacity: 0.4;
+}
+.terminal-panel.is-typing .term-prompt-label::after {
+    content: ' ▋';
+    animation: blink-cursor .6s step-end infinite;
+}
+@keyframes blink-cursor { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ══════════════════════════════════════════════════
+   MOBILE — bottom-sheet drawer  (≤ 1024 px)
+
+   The terminal leaves the normal document flow and
+   becomes a fixed bottom sheet that slides up when
+   the FAB is tapped. Collapsed by default; .mobile-open
+   reveals it.
+
+   Desktop  (> 1024 px)  →  side-by-side panel (normal flow)
+   Tablet / Phone (≤ 1024 px)  →  hidden bottom sheet + FAB
+══════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .terminal-panel {
+        /* Take it out of the flex layout */
+        position: fixed !important;
+        bottom: 0; left: 0; right: 0;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
+        height: 65vh;
+
+        /* Slide off the bottom by default */
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 600;
+
+        /* Rounded top corners for the drawer look */
+        border-top: 2px solid var(--term-green-mid);
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Slide into view when JS adds this class */
+    .terminal-panel.mobile-open {
+        transform: translateY(0);
+    }
+
+    /* Quick handle bar at the top of the drawer */
+    .term-bar::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px; height: 4px;
+        background: #444;
+        border-radius: 2px;
+    }
+    .term-bar { position: relative; }
+
+    /* Terminal is fully interactive on mobile when drawer is open */
+    .term-btn   { pointer-events: auto; opacity: 1; }
+    .term-input { pointer-events: auto; }
+}
+
+/* ── Mobile backdrop ──────────────────────────── */
+.term-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 590;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s;
+}
+@media (max-width: 1024px) {
+    .term-backdrop {
+        display: block;
+    }
+    .term-backdrop.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}

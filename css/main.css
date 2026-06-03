@@ -1,0 +1,547 @@
+/* ══════════════════════════════════════════
+   CSS VARIABLES — DARK  (default)
+══════════════════════════════════════════ */
+:root {
+    /* Panel / page palette */
+    --panel-bg:        #070c1a;
+    --panel-surface:   #0d1528;
+    --panel-card:      #111d35;
+    --panel-border:    #1c2d4a;
+    --accent-cyan:     #00d4ff;
+    --accent-purple:   #7b2fff;
+    --accent-glow:     rgba(0, 212, 255, 0.12);
+    --text-primary:    #ddeeff;
+    --text-secondary:  #7a9abb;
+    --text-muted:      #3a5a78;
+
+    /* Navbar — dark-mode defaults */
+    --nav-bg:          #040810;
+    --nav-border:      transparent;
+    --nav-shadow:      none;
+    --nav-logo-color:  #00d4ff;
+    --nav-logo-accent: #39ff14;
+    --nav-text:        #8aa8c8;
+    --nav-status:      #22aa10;
+
+    /* Typography */
+    --font-display:    'Rajdhani', sans-serif;
+    --font-body:       'Figtree', sans-serif;
+    --font-mono:       'JetBrains Mono', monospace;
+}
+
+/* ══════════════════════════════════════════
+   CSS VARIABLES — LIGHT
+   Panel / text vars only — terminal vars
+   live in terminal.css and are never touched.
+══════════════════════════════════════════ */
+[data-theme="light"] {
+    --panel-bg:        #f0f5ff;
+    --panel-surface:   #ffffff;
+    --panel-card:      #e6eeff;
+    --panel-border:    #c0d0ec;
+    --accent-cyan:     #0077aa;
+    --accent-purple:   #6012dd;
+    --accent-glow:     rgba(0, 119, 170, 0.08);
+    --text-primary:    #0a1628;
+    --text-secondary:  #3a5270;
+    --text-muted:      #6882a0;
+
+    /* Navbar — light-mode overrides */
+    --nav-bg:          #ffffff;
+    --nav-border:      #e0e8f8;
+    --nav-shadow:      0 1px 12px rgba(0,0,0,0.07);
+    --nav-logo-color:  #0077aa;
+    --nav-logo-accent: #229900;
+    --nav-text:        #4a6888;
+    --nav-status:      #229900;
+}
+
+/* ══════════════════════════════════════════
+   RESET / BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+    height: 100%;
+    margin: 0; padding: 0;
+    background: var(--panel-bg);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow: hidden;
+}
+
+/* ══════════════════════════════════════════
+   NAVBAR
+   Uses CSS variables so both themes work
+   without duplication.
+══════════════════════════════════════════ */
+.site-navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    height: 54px;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: var(--nav-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    transition: background .25s, border-color .25s, box-shadow .25s;
+}
+
+/* Gradient accent rule at the bottom of the navbar */
+.site-navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        var(--nav-logo-accent) 0%,
+        var(--accent-cyan)     40%,
+        var(--accent-purple)   100%);
+    opacity: 0.5;
+}
+
+/* Logo */
+.nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--nav-logo-color);
+    text-decoration: none;
+    transition: color .25s;
+}
+.nav-logo span {
+    color: var(--nav-logo-accent);
+    transition: color .25s;
+}
+
+/* ── Theme toggle button ── */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.85rem;
+    background: rgba(128,128,128,0.08);
+    border: 1px solid rgba(128,128,128,0.18);
+    border-radius: 20px;
+    color: var(--nav-text);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background .2s, border-color .2s, color .2s;
+}
+.theme-toggle i { font-size: 0.75rem; }
+.theme-toggle:hover {
+    background: var(--accent-glow);
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+/* Status badge */
+.nav-status {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--nav-status);
+    transition: color .25s;
+}
+
+.dot-pulse {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: blink 2.2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ══════════════════════════════════════════
+   MAIN LAYOUT
+══════════════════════════════════════════ */
+.main-wrap {
+    display: flex;
+    height: calc(100vh - 54px);
+    margin-top: 54px;
+    overflow: hidden;
+    position: relative;   /* for .term-toggle-btn absolute positioning */
+}
+
+/* ══════════════════════════════════════════
+   PANEL TOGGLE BUTTON
+   Sits on the divider; slides to right edge
+   when the terminal panel is collapsed.
+══════════════════════════════════════════ */
+.term-toggle-btn {
+    position: absolute;
+    left: 66.666%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--panel-card);
+    border: 1px solid var(--panel-border);
+    color: var(--text-secondary);
+    font-size: 0.68rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: left 0.3s cubic-bezier(0.4,0,0.2,1),
+                background .18s, border-color .18s, color .18s;
+}
+.term-toggle-btn:hover {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    color: #fff;
+}
+
+/* Floats to right edge when terminal is hidden */
+.main-wrap.terminal-hidden .term-toggle-btn {
+    left: calc(100% - 13px);
+}
+
+/* Toggle button hidden below 1025 px — handled in the tablet media query below */
+
+/* ══════════════════════════════════════════
+   LEFT — PROFILE PANEL  (67%)
+══════════════════════════════════════════ */
+.profile-panel {
+    flex: 0 0 66.666%;
+    max-width: 66.666%;
+    overflow-y: auto;
+    padding: 1.5rem 1.75rem;
+    background: var(--panel-bg);
+    border-right: 1px solid var(--panel-border);
+    transition: flex-basis 0.3s cubic-bezier(0.4,0,0.2,1),
+                max-width  0.3s cubic-bezier(0.4,0,0.2,1),
+                background .25s, border-color .25s;
+}
+.profile-panel::-webkit-scrollbar { width: 4px; }
+.profile-panel::-webkit-scrollbar-track { background: transparent; }
+.profile-panel::-webkit-scrollbar-thumb { background: var(--panel-border); border-radius: 2px; }
+
+/* Expand to full width when terminal is hidden */
+.main-wrap.terminal-hidden .profile-panel {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/* ── Profile Card ── */
+.profile-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--panel-surface);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 1.4rem 1.5rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    animation: fadeUp 0.4s ease both;
+    transition: background .25s, border-color .25s;
+}
+/* top gradient accent bar */
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+}
+
+.profile-avatar {
+    flex-shrink: 0;
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 0 22px rgba(0,212,255,.25);
+}
+
+.profile-info { flex: 1; min-width: 0; }
+
+.profile-name {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: .5px;
+    margin: 0 0 .2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color .25s;
+}
+.profile-title {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent-cyan);
+    letter-spacing: 1px;
+    margin: 0 0 .45rem;
+    transition: color .25s;
+}
+.profile-status {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .74rem;
+    color: var(--nav-status);
+}
+
+/* Social buttons */
+.profile-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+    margin-left: auto;
+}
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    padding: .32rem .7rem;
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: .74rem;
+    text-decoration: none;
+    transition: border-color .18s, color .18s, background .18s;
+    cursor: pointer;
+}
+.social-btn:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    background: var(--accent-glow);
+}
+
+/* ── Tab Navigation ── */
+.profile-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--panel-border);
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.4s 0.05s ease both;
+    transition: border-color .25s;
+}
+.profile-tab {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .55rem 1.2rem;
+    font-family: var(--font-body);
+    font-size: .84rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color .18s, border-color .18s;
+    white-space: nowrap;
+}
+.profile-tab i { font-size: .78rem; }
+.profile-tab:hover { color: var(--text-primary); }
+.profile-tab.active {
+    color: var(--accent-cyan);
+    border-bottom-color: var(--accent-cyan);
+}
+
+/* ── Tab Panes ── */
+.tab-pane { display: none; animation: fadeUp 0.25s ease both; }
+.tab-pane.active { display: block; }
+
+/* Bio card — Bootstrap handles text reflow as bio grows */
+.bio-card {
+    background: var(--panel-card);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    font-size: .9rem;
+    line-height: 1.75;
+    color: var(--text-primary);
+    transition: background .25s, border-color .25s, color .25s;
+}
+.bio-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: .6rem;
+    color: var(--text-primary);
+}
+
+/* Stat cards grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+.stat-card {
+    background: var(--panel-card);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    transition: border-color .2s, background .25s;
+}
+.stat-card:hover { border-color: var(--accent-cyan); }
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    line-height: 1;
+    margin-bottom: .25rem;
+}
+.stat-label { font-size: .72rem; color: var(--text-secondary); }
+
+/* Placeholder card */
+.placeholder-card {
+    background: var(--panel-card);
+    border: 1px dashed var(--panel-border);
+    border-radius: 10px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: background .25s, border-color .25s;
+}
+.placeholder-card i {
+    display: block;
+    font-size: 2rem;
+    color: var(--text-muted);
+    margin-bottom: .75rem;
+}
+.placeholder-label {
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: .5rem;
+}
+.placeholder-card p {
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ══════════════════════════════════════════
+   SHARED ANIMATIONS
+══════════════════════════════════════════ */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ══════════════════════════════════════════
+   MOBILE FAB — floating terminal toggle button
+   Hidden on desktop; appears on tablet / phone.
+══════════════════════════════════════════ */
+.term-fab {
+    display: none; /* desktop: hidden */
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 650;  /* above backdrop + drawer */
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: #0a0a0a;
+    border: 1.5px solid #39ff14;
+    color: #39ff14;
+    font-size: 1.15rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(57,255,20,.35), 0 4px 16px rgba(0,0,0,.5);
+    transition: transform .2s, box-shadow .2s, background .2s;
+}
+.term-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 28px rgba(57,255,20,.55), 0 6px 20px rgba(0,0,0,.55);
+}
+/* Rotate to X when drawer is open */
+.term-fab.open {
+    background: #111;
+    border-color: #ff5555;
+    color: #ff5555;
+    box-shadow: 0 0 18px rgba(255,85,85,.3), 0 4px 16px rgba(0,0,0,.5);
+}
+
+@media (max-width: 1024px) {
+    .term-fab { display: flex; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — page / panel breakpoints
+   Terminal is hidden below 1025 px (see terminal.css).
+   Breakpoints:
+     ≥ 1025 px → desktop  (side-by-side, interactive terminal)
+     < 1025 px → tablet / phone  (single column, no terminal)
+     < 576  px → small phone  (extra compact tweaks)
+══════════════════════════════════════════ */
+
+/* ── Tablet + Phone  (< 1025 px) ───────────────────
+   • Main-wrap stays full-viewport-height so nothing scrolls
+     at the page level — only the profile panel scrolls inside.
+   • Tabs row gets horizontal scroll so all 5 tabs are reachable.
+   • Theme toggle collapses to icon-only.
+   • Status badge and panel divider button are hidden.
+─────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .main-wrap {
+        flex-direction: column;
+        height: calc(100vh - 54px);
+        overflow: hidden;
+    }
+
+    .profile-panel {
+        flex: 1 1 auto !important;
+        max-width: 100% !important;
+        width: 100%;
+        overflow-y: auto;
+        border-right: none;
+    }
+
+    /* Tabs scroll horizontally — no clipping on narrow screens */
+    .profile-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .profile-tabs::-webkit-scrollbar { display: none; }
+
+    /* Icon-only theme toggle — text hidden */
+    #themeLabel { display: none; }
+
+    .nav-status      { display: none; }
+    .term-toggle-btn { display: none; }
+    .profile-socials { margin-left: 0; margin-top: .75rem; }
+}
+
+/* ── Small phone  (< 576 px) ──────────────────────── */
+@media (max-width: 575.98px) {
+    .site-navbar { padding: 0 1rem; }
+
+    .profile-card  { flex-direction: column; align-items: flex-start; }
+    .profile-name  { white-space: normal; font-size: 1.15rem; }
+    .social-btn    { font-size: .68rem; padding: .28rem .55rem; }
+    .stats-grid    { grid-template-columns: repeat(2, 1fr); }
+    .profile-tab   { padding: .45rem .8rem; font-size: .78rem; }
+}
