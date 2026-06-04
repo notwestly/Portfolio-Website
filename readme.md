@@ -1,4 +1,4 @@
-# JWC Portfolio — Jhon Westly A. Carmelotes
+# Web Portfolio — Jhon Westly A. Carmelotes
 
 A personal developer portfolio built from scratch — no templates, no frameworks, no CMS. Just clean HTML, CSS, and vanilla JavaScript with a terminal twist.
 
