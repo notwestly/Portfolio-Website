@@ -86,6 +86,7 @@ function applyTheme(theme) {
         if (icon)  icon.className    = 'bi bi-moon-fill';
         if (label) label.textContent = 'Dark';
     }
+
 }
 
 function toggleTheme() {

@@ -75,5 +75,5 @@ const PORTFOLIO_DATA = {
         { name: 'Best Capstone in QA',                  issuer: 'Village88',                      year: '2023' }
     ],
 
-    resume: 'assets/Jhon_Westly_Carmelotes_Resume_SoftwareEngineer.docx'
+    resume: 'assets/Resumes/Jhon_Westly_A_Carmelotes_Resume.pdf'
 };

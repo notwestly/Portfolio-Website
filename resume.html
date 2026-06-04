@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jhon Westly A. Carmelotes — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #efece3;
+    --sheet: #ffffff;
+    --ink: #1b1c1e;
+    --muted: #5d6066;
+    --faint: #8a8d93;
+    --rule: #e0ddd4;
+    --accent: #0d7d72;
+    --shadow: 0 24px 60px -20px rgba(40,42,48,.28), 0 6px 18px -10px rgba(40,42,48,.18);
+    --grain: .035;
+  }
+  html[data-theme="dark"] {
+    --bg: #0c0e11;
+    --sheet: #15181d;
+    --ink: #e9e7e1;
+    --muted: #9aa0a8;
+    --faint: #6b7079;
+    --rule: #2a2e35;
+    --accent: #4fd1c5;
+    --shadow: 0 30px 70px -24px rgba(0,0,0,.7), 0 8px 24px -12px rgba(0,0,0,.55);
+    --grain: .05;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Spline Sans", system-ui, sans-serif;
+    line-height: 1.5;
+    padding: 48px 20px 80px;
+    transition: background .5s ease, color .5s ease;
+    min-height: 100vh;
+  }
+  /* subtle paper grain */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    opacity: var(--grain);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    transition: opacity .5s ease;
+  }
+
+  /* ---- controls ---- */
+  .controls {
+    position: fixed; top: 18px; right: 18px; z-index: 50;
+    display: flex; gap: 10px; align-items: center;
+  }
+  .ctl {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; letter-spacing: .04em;
+    background: var(--sheet); color: var(--ink);
+    border: 1px solid var(--rule); border-radius: 999px;
+    box-shadow: var(--shadow);
+    display: flex; align-items: center; overflow: hidden;
+    transition: background .5s ease, border-color .5s ease, color .5s ease;
+  }
+  .ctl button {
+    font: inherit; color: var(--faint);
+    background: transparent; border: 0; cursor: pointer;
+    padding: 8px 13px; transition: color .25s ease, background .25s ease;
+  }
+  .ctl button:hover { color: var(--ink); }
+  .ctl button.on { color: var(--sheet); background: var(--accent); }
+  .ctl .div { width: 1px; align-self: stretch; background: var(--rule); }
+  .ctl.theme button { padding: 9px 14px; }
+
+  /* ---- sheet ---- */
+  .sheet {
+    position: relative; z-index: 1;
+    max-width: 800px; margin: 0 auto;
+    background: var(--sheet);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    padding: 52px 56px 56px;
+    transition: background .5s ease, border-color .5s ease;
+  }
+
+  .name {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600; font-size: 34px; letter-spacing: -.01em;
+    line-height: 1.04;
+  }
+  .role {
+    font-family: "JetBrains Mono", monospace;
+    color: var(--accent); font-size: 13.5px; letter-spacing: .02em;
+    margin-top: 6px;
+  }
+  .contact {
+    color: var(--muted); font-size: 13px; margin-top: 12px;
+    display: flex; flex-wrap: wrap; gap: 4px 0;
+  }
+  .contact .sep { color: var(--faint); padding: 0 9px; }
+  .contact a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .contact a:hover { color: var(--accent); border-color: var(--accent); }
+  .topline { border-bottom: 1.5px solid var(--ink); padding-bottom: 18px; transition: border-color .5s ease; }
+
+  section { margin-top: 22px; }
+  .sec-h {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 500; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent);
+    padding-bottom: 6px; margin-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color .5s ease;
+  }
+  .summary { font-size: 14px; color: var(--ink); }
+
+  .entry-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .org { font-weight: 600; font-size: 15px; }
+  .org-meta { color: var(--muted); font-size: 12.5px; font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+  .role-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 10px; }
+  .role-title { font-weight: 600; font-size: 13.5px; color: var(--ink); }
+  .role-date { color: var(--faint); font-size: 12px; font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+  ul { list-style: none; margin-top: 7px; }
+  li { font-size: 13.5px; color: var(--muted); padding-left: 18px; position: relative; margin-bottom: 5px; }
+  li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); font-size: 12px; top: 1px; }
+
+  .edu-line { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .edu-sub { font-size: 13.5px; color: var(--muted); margin-top: 3px; }
+  .edu-course { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+  .edu-course b { color: var(--ink); font-weight: 600; }
+
+  .skill-row { display: grid; grid-template-columns: 168px 1fr; gap: 6px 14px; font-size: 13px; margin-bottom: 7px; }
+  .skill-row .k { color: var(--ink); font-weight: 600; }
+  .skill-row .v { color: var(--muted); }
+
+  .cert { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 13px; margin-bottom: 6px; }
+  .cert .c { color: var(--muted); }
+  .cert .d { color: var(--faint); font-family: "JetBrains Mono", monospace; font-size: 12px; white-space: nowrap; }
+
+  /* entrance */
+  .reveal { opacity: 0; transform: translateY(8px); animation: rise .6s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  .footnote { text-align: center; color: var(--faint); font-size: 11px; font-family: "JetBrains Mono", monospace; margin-top: 26px; }
+
+  @media (max-width: 620px) {
+    body { padding: 70px 0 50px; }
+    .sheet { padding: 34px 22px 38px; border-radius: 0; border-left: 0; border-right: 0; }
+    .name { font-size: 27px; }
+    .skill-row { grid-template-columns: 1fr; gap: 1px; margin-bottom: 10px; }
+    .entry-top, .role-top, .edu-line, .cert { flex-direction: column; gap: 2px; }
+    .org-meta, .role-date, .cert .d { white-space: normal; }
+  }
+
+  @media print {
+    .controls { display: none; }
+    body { padding: 0; background: #fff; }
+    body::before { display: none; }
+    .sheet { box-shadow: none; border: 0; max-width: 100%; padding: 0; }
+    .reveal { animation: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="controls">
+    <div class="ctl lang" role="group" aria-label="Language">
+      <button id="en" class="on" onclick="setLang('en')">EN</button>
+      <span class="div"></span>
+      <button id="tl" onclick="setLang('tl')">TL</button>
+    </div>
+    <div class="ctl theme">
+      <button id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">☾ Dark</button>
+    </div>
+  </div>
+
+  <main class="sheet" id="sheet"></main>
+
+<script>
+/* ---------- shared (untranslated) data ---------- */
+const SH = {
+  name: "Jhon Westly A. Carmelotes",
+  phone: "+63 915 511 2210",
+  email: "westlycarmelotes@gmail.com",
+  links: [
+    ["linkedin.com/in/jhon-westly-a-carmelotes", "https://www.linkedin.com/in/jhon-westly-a-carmelotes/"],
+    ["github.com/notwestly", "https://github.com/notwestly"],
+    ["portfolio", "https://notwestly.github.io/Portfolio-Website/"]
+  ],
+  company: "Amdocs",
+  role1: "Software Engineer",
+  d1: "Jan 2025 – Mar 2026",
+  role2: "Junior Software Engineer",
+  d2: "Jun 2024 – Dec 2024",
+  school: "Lyceum of Alabang",
+  years: "2019 – 2023",
+  degree: "Bachelor of Science in Computer Engineering",
+  // skill values + cert names stay in English (industry standard)
+  skillVals: {
+    languages: "C#, Java, Python, PHP, JavaScript, SQL, C++",
+    frameworks: ".NET, Laravel, React.js, Node.js, jQuery, Bootstrap, REST APIs",
+    cloud: "AWS (EKS, S3, CloudWatch, Elastic Beanstalk), Kubernetes, CI/CD pipelines, Git, cloud migration",
+    databases: "SQL, database design, ORM, query optimization",
+    testing: "Unit testing, test automation, Selenium, Postman, manual testing",
+    methods: "Agile/Scrum, SDLC, OOP, enterprise release management, Lean Six Sigma (Yellow Belt)"
+  },
+  certs: [
+    ["Agentic Development using Cursor — Amdocs (CBS PSU)", "Jan 2026"],
+    ["Project Management Fundamentals (MOOC) — Amdocs", "Sep 2025"],
+    ["Agile & Scaled Agile Fundamentals — Amdocs", "Jan 2025"],
+    ["ASEAN Youth for Digital Action (AYDA) — 189 hrs", "Jan 2025"],
+    ["AWS re/Start — 300 hrs: Linux, Python, networking, security, core AWS", "Oct 2024"],
+    ["Lean Six Sigma Yellow Belt (Best Presenter) — Elevate", "Jul 2023"],
+    ["Full-Stack Web Development Bootcamp, 16 wks (Best in Capstone, QA) — Village88", "Apr 2023"]
+  ]
+};
+
+/* ---------- translatable strings ---------- */
+const T = {
+  en: {
+    role: "Software Engineer",
+    loc: "Metro Manila, Philippines",
+    summary_h: "Summary",
+    summary: "Software Engineer with nearly two years building and maintaining full-stack enterprise applications across .NET, C#, PHP, JavaScript, and SQL. Promoted from Junior within seven months; contributed to 14 production deployments, including 2 cloud migrations to AWS. Agile practitioner who ships reliably under deadline, mentors teammates, and ramps quickly on new stacks.",
+    exp_h: "Experience",
+    place: "Ortigas, Pasig, Metro Manila",
+    r1b: [
+      "Delivered an end-to-end full-stack enhancement to a live enterprise product within a 36 man-day deadline, owning architecture, development, testing, and deployment.",
+      "Served as primary backend developer across multiple concurrent projects, building services in .NET, C#, PHP, SQL, and JavaScript aligned to evolving business requirements.",
+      "Shipped 11 production deployments across 2025–2026 and provided post-deployment support on 4 releases, sustaining one for roughly three months given system scale.",
+      "Mentored 2 new hires through code reviews and technical guidance; scoped and negotiated requirements with project managers across Agile ceremonies and sprint reviews."
+    ],
+    r2b: [
+      "Contributed to a large-scale cloud migration, moving legacy components to core AWS services across 2 cloud-migration deployments.",
+      "Developed and maintained application features in .NET and JavaScript within cloud-enabled architectures, meeting performance, reliability, and security standards.",
+      "Worked within enterprise Agile workflows and CI/CD pipelines through full production release."
+    ],
+    edu_h: "Education",
+    honor: "Dean’s List · GPA 1.75 (90–92%)",
+    course_l: "Relevant coursework:",
+    course: "Data Structures & Algorithms, Object-Oriented Programming, Database Management, Software Development, Web Development, Project Management.",
+    skills_h: "Technical Skills",
+    skillKeys: {
+      languages: "Languages", frameworks: "Frameworks & Libraries", cloud: "Cloud & DevOps",
+      databases: "Databases", testing: "Testing & QA", methods: "Methodologies"
+    },
+    cert_h: "Certifications & Professional Development",
+    foot: "Interactive résumé · toggle theme & language above"
+  },
+  tl: {
+    role: "Software Engineer",
+    loc: "Metro Manila, Pilipinas",
+    summary_h: "Buod",
+    summary: "Software Engineer na may halos dalawang taóng karanasan sa pagbuo at pagpapanatili ng full-stack enterprise applications gamit ang .NET, C#, PHP, JavaScript, at SQL. Na-promote mula Junior sa loob ng pitóng buwan; bahagi ng 14 na production deployments, kabilang ang 2 cloud migration papuntang AWS. Sanáy sa Agile, maaasahan sa paghahatid kahit may deadline, nagtuturò sa mga kasamahan, at mabilis matuto ng bagong tech stack.",
+    exp_h: "Karanasan",
+    place: "Ortigas, Pasig, Metro Manila",
+    r1b: [
+      "Naghatid ng end-to-end full-stack enhancement sa isang live enterprise product sa loob ng 36 man-day na deadline — mula architecture, development, testing, hanggang deployment.",
+      "Naging pangunahing backend developer sa iba’t ibang sabay-sabay na proyekto; gumawa ng mga serbisyo sa .NET, C#, PHP, SQL, at JavaScript ayon sa nagbabagong business requirements.",
+      "Nag-ship ng 11 production deployments noong 2025–2026 at nagbigay ng post-deployment support sa 4 na release — inalagaan ang isa nang halos tatlong buwan dahil sa laki ng sistema.",
+      "Nag-mentor sa 2 bagong empleyado sa pamamagitan ng code review at teknikal na gabay; nakipag-usap sa mga project manager para i-scope ang requirements sa mga Agile ceremony at sprint review."
+    ],
+    r2b: [
+      "Naging bahagi ng malakihang cloud migration; inilipat ang mga legacy component sa core AWS services sa 2 cloud-migration deployment.",
+      "Bumuo at nag-maintain ng mga application feature sa .NET at JavaScript sa loob ng cloud-enabled architecture, naaabot ang pamantayan sa performance, reliability, at security.",
+      "Nagtrabaho gamit ang enterprise Agile workflow at CI/CD pipeline hanggang sa ganáp na production release."
+    ],
+    edu_h: "Edukasyon",
+    honor: "Dean’s Lister · GPA 1.75 (90–92%)",
+    course_l: "Kaugnay na coursework:",
+    course: "Data Structures & Algorithms, Object-Oriented Programming, Database Management, Software Development, Web Development, Project Management.",
+    skills_h: "Teknikal na Kasanayan",
+    skillKeys: {
+      languages: "Mga Language", frameworks: "Frameworks at Libraries", cloud: "Cloud at DevOps",
+      databases: "Mga Database", testing: "Testing at QA", methods: "Mga Metodolohiya"
+    },
+    cert_h: "Mga Sertipikasyon at Propesyonal na Pag-unlad",
+    foot: "Interactive na résumé · palitan ang tema at wika sa itaas"
+  }
+};
+
+let lang = "en";
+
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function render() {
+  const t = T[lang];
+  const linksHtml = SH.links.map(l => `<a href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])}</a>`)
+    .join('<span class="sep">·</span>');
+
+  const li = arr => arr.map(b => `<li>${esc(b)}</li>`).join("");
+
+  const skillOrder = ["languages","frameworks","cloud","databases","testing","methods"];
+  const skillsHtml = skillOrder.map(k =>
+    `<div class="skill-row"><div class="k">${esc(t.skillKeys[k])}</div><div class="v">${esc(SH.skillVals[k])}</div></div>`
+  ).join("");
+
+  const certsHtml = SH.certs.map(c =>
+    `<div class="cert"><span class="c">${esc(c[0])}</span><span class="d">${esc(c[1])}</span></div>`
+  ).join("");
+
+  document.getElementById("sheet").innerHTML = `
+    <header class="topline reveal">
+      <div class="name">${esc(SH.name)}</div>
+      <div class="role">${esc(t.role)}</div>
+      <div class="contact">
+        <span>${esc(t.loc)}</span><span class="sep">·</span>
+        <span>${esc(SH.phone)}</span><span class="sep">·</span>
+        <a href="mailto:${SH.email}">${esc(SH.email)}</a>
+      </div>
+      <div class="contact" style="margin-top:4px">${linksHtml}</div>
+    </header>
+
+    <section class="reveal" style="animation-delay:.05s">
+      <div class="sec-h">${esc(t.summary_h)}</div>
+      <p class="summary">${esc(t.summary)}</p>
+    </section>
+
+    <section class="reveal" style="animation-delay:.1s">
+      <div class="sec-h">${esc(t.exp_h)}</div>
+      <div class="entry-top"><span class="org">${esc(SH.company)}</span><span class="org-meta">${esc(t.place)}</span></div>
+      <div class="role-top"><span class="role-title">${esc(SH.role1)}</span><span class="role-date">${esc(SH.d1)}</span></div>
+      <ul>${li(t.r1b)}</ul>
+      <div class="role-top"><span class="role-title">${esc(SH.role2)}</span><span class="role-date">${esc(SH.d2)}</span></div>
+      <ul>${li(t.r2b)}</ul>
+    </section>
+
+    <section class="reveal" style="animation-delay:.15s">
+      <div class="sec-h">${esc(t.edu_h)}</div>
+      <div class="edu-line"><span class="org">${esc(SH.school)}</span><span class="org-meta">${esc(SH.years)}</span></div>
+      <div class="edu-sub">${esc(SH.degree)} — ${esc(t.honor)}</div>
+      <div class="edu-course"><b>${esc(t.course_l)}</b> ${esc(t.course)}</div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.2s">
+      <div class="sec-h">${esc(t.skills_h)}</div>
+      ${skillsHtml}
+    </section>
+
+    <section class="reveal" style="animation-delay:.25s">
+      <div class="sec-h">${esc(t.cert_h)}</div>
+      ${certsHtml}
+    </section>
+
+    <div class="footnote reveal" style="animation-delay:.3s">${esc(t.foot)}</div>
+  `;
+  document.documentElement.lang = lang;
+}
+
+function setLang(l){
+  if (l === lang) return;
+  lang = l;
+  document.getElementById("en").classList.toggle("on", l === "en");
+  document.getElementById("tl").classList.toggle("on", l === "tl");
+  render();
+}
+
+function toggleTheme(){
+  const dark = document.documentElement.getAttribute("data-theme") === "dark";
+  applyResumeTheme(dark ? "light" : "dark");
+}
+
+function applyResumeTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  document.getElementById("themeBtn").textContent = t === "dark" ? "☾ Dark" : "☀ Light";
+}
+
+const initTheme = localStorage.getItem("jwc-theme") ||
+  (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+applyResumeTheme(initTheme);
+
+render();
+</script>
+</body>
+</html>

@@ -17,8 +17,9 @@ const termOut   = document.getElementById('termOut');
 const termInput = document.getElementById('termInput');
 
 const cmdHistory = [];
-let   histIdx    = -1;
-let   isTyping   = false;   // blocks new commands during animation
+let   histIdx     = -1;
+let   isTyping    = false;   // blocks new commands during animation
+let   pendingAction = null;  // set when a command is waiting for Y/N confirmation
 
 // Output buffer: null = immediate mode, [] = collecting mode
 let outputBuffer = null;
@@ -263,10 +264,13 @@ const CMDS = {
     // ── resume ────────────────────────────────────
     resume() {
         boxTop('RESUME');
-        line(`│  <span class="c-cyan">File    </span> : Jhon_Westly_Carmelotes_Resume.docx`);
-        line(`│  <span class="c-gray">→ Download currently unavailable</span>`);
+        line(`│  <span class="c-cyan">File    </span> : Jhon_Westly_A_Carmelotes_Resume.pdf`);
+        blank();
+        line(`│  <span class="c-gray">Download resume?  <span class="c-yellow">[ Y / N ]</span>  (default: N)</span>`);
+        line(`│  <span class="c-gray">Type <span class="c-cyan">y</span> + Enter to download, or <span class="c-cyan">n</span> + Enter to cancel.</span>`);
         boxBot();
         blank();
+        pendingAction = 'resume-download';
     },
 
     // ── certification ─────────────────────────────
@@ -325,11 +329,34 @@ const CMDS = {
    COMMAND RUNNER
 ══════════════════════════════════════════════════ */
 async function runCmd(raw) {
-    // Block new commands while typing animation is running
     if (isTyping) return;
 
     const cmd = raw.trim().toLowerCase();
     if (!cmd) return;
+
+    // Handle pending Y/N confirmation
+    if (pendingAction === 'resume-download') {
+        pendingAction = null;
+        echoCmd(cmd);
+        startBuffer();
+        if (cmd === 'y') {
+            line(`  <span class="c-green">✓ Downloading resume…</span>`);
+            blank();
+            const a = document.createElement('a');
+            a.href = PORTFOLIO_DATA.resume;
+            a.download = 'Jhon_Westly_A_Carmelotes_Resume.pdf';
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        } else {
+            line(`  <span class="c-gray">Download cancelled.</span>`);
+            blank();
+        }
+        await flushBuffer();
+        return;
+    }
 
     // Prompt echo is ALWAYS immediate — never buffered
     if (cmd !== 'clear') echoCmd(cmd);
