@@ -1,0 +1,135 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "JWC" [ref=e3] [cursor=pointer]:
+      - /url: "#"
+    - button "" [ref=e4] [cursor=pointer]:
+      - generic [ref=e5]: 
+  - generic [ref=e6]:
+    - text: 
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e9]:
+          - text: JW
+          - img "Jhon Westly" [ref=e10]
+        - generic [ref=e11]:
+          - heading "Jhon Westly A. Carmelotes" [level=2] [ref=e12]
+          - paragraph [ref=e13]: Software Engineer
+          - generic [ref=e14]: Open to opportunities
+        - generic [ref=e16]:
+          - link " GitHub" [ref=e17] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e18]: 
+            - text: GitHub
+          - link " LinkedIn" [ref=e19] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/jhon-westly-a-carmelotes/
+            - generic [ref=e20]: 
+            - text: LinkedIn
+          - link " Email" [ref=e21] [cursor=pointer]:
+            - /url: mailto:westlycarmelotes@gmail.com
+            - generic [ref=e22]: 
+            - text: Email
+      - generic [ref=e23]:
+        - generic [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: 
+          - text: About
+        - generic [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: 
+          - text: Skills
+        - generic [ref=e28] [cursor=pointer]:
+          - generic [ref=e29]: 
+          - text: Projects
+        - generic [ref=e30] [cursor=pointer]:
+          - generic [ref=e31]: 
+          - text: Experience
+        - generic [ref=e32] [cursor=pointer]:
+          - generic [ref=e33]: 
+          - text: Certifications
+        - generic [ref=e34] [cursor=pointer]:
+          - generic [ref=e35]: 
+          - text: Contact
+      - text:                  
+      - generic [ref=e257]:
+        - generic [ref=e258]:
+          - generic [ref=e259]: 
+          - generic [ref=e260]:
+            - link "westlycarmelotes@gmail.com" [ref=e261] [cursor=pointer]:
+              - /url: mailto:westlycarmelotes@gmail.com
+            - link "mewestly@gmail.com" [ref=e262] [cursor=pointer]:
+              - /url: mailto:mewestly@gmail.com
+        - generic [ref=e263]:
+          - generic [ref=e264]: 
+          - link "+63 915 511 2210" [ref=e265] [cursor=pointer]:
+            - /url: tel:+639155112210
+        - generic [ref=e266]:
+          - generic [ref=e267]: 
+          - link "linkedin.com/in/jhon-westly-a-carmelotes" [ref=e268] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/jhon-westly-a-carmelotes/
+        - generic [ref=e269]:
+          - generic [ref=e270]: 
+          - generic [ref=e271]: Currently in the Philippines
+    - generic [ref=e57]:
+      - generic [ref=e62]: guest — bash
+      - generic [ref=e63]:
+        - generic [ref=e64]: ██╗ ██╗ ██╗ ██████╗
+        - generic [ref=e65]: ██║ ██║ ██║ ██╔════╝
+        - generic [ref=e66]: ██║ ██║ █╗ ██║ ██║
+        - generic [ref=e67]: ██ ██║ ╚██╗███╔╝ ╚██████╗
+        - generic [ref=e68]: ╚════╝ ╚═╝╚═╝ ╚═════╝
+        - generic [ref=e69]: JWC Terminal v1.0.0
+        - generic [ref=e70]: Type 'help' to see available commands.
+        - generic [ref=e108]: guest:~$ about
+        - generic [ref=e109]: ┌─ ABOUT ────────────────────────────────────┐
+        - generic [ref=e110]: "│ Name : Jhon Westly A. Carmelotes"
+        - generic [ref=e111]: "│ Role : Software Engineer"
+        - generic [ref=e112]: "│ Bio : Hi, I'm Westly."
+        - generic [ref=e113]: "│ Status : ● Available for opportunities"
+        - generic [ref=e114]: └───────────────────────────────────────────┘
+      - generic [ref=e71]:
+        - button "👤 about — Who Am I? ›" [ref=e72] [cursor=pointer]:
+          - generic [ref=e73]:
+            - generic [ref=e74]: 👤
+            - generic [ref=e75]: about
+            - generic [ref=e76]: — Who Am I?
+          - generic [ref=e77]: ›
+        - button "⚡ skills — Tech Stack ›" [ref=e78] [cursor=pointer]:
+          - generic [ref=e79]:
+            - generic [ref=e80]: ⚡
+            - generic [ref=e81]: skills
+            - generic [ref=e82]: — Tech Stack
+          - generic [ref=e83]: ›
+        - button "🚀 projects — Featured Work ›" [ref=e84] [cursor=pointer]:
+          - generic [ref=e85]:
+            - generic [ref=e86]: 🚀
+            - generic [ref=e87]: projects
+            - generic [ref=e88]: — Featured Work
+          - generic [ref=e89]: ›
+        - button "💼 experience — Work History ›" [ref=e90] [cursor=pointer]:
+          - generic [ref=e91]:
+            - generic [ref=e92]: 💼
+            - generic [ref=e93]: experience
+            - generic [ref=e94]: — Work History
+          - generic [ref=e95]: ›
+        - button "📬 contact — Get In Touch ›" [ref=e96] [cursor=pointer]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: 📬
+            - generic [ref=e99]: contact
+            - generic [ref=e100]: — Get In Touch
+          - generic [ref=e101]: ›
+      - generic [ref=e102]:
+        - generic [ref=e103]: guest:~$
+        - textbox "type a command..." [disabled] [ref=e104]
+  - button "Toggle terminal" [ref=e105] [cursor=pointer]:
+    - generic [ref=e106]: 
+  - generic:
+    - generic:
+      - generic:
+        - generic: Agile & Scaled Agile Fundamentals
+        - generic:
+          - link:
+            - /url: assets/Certifications/CertificateOfCompletionAGILE.pdf
+            - generic: 
+            - text: Open in new tab
+          - button:
+            - generic: 
+      - iframe [ref=e107]:
+        

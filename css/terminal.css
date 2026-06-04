@@ -115,7 +115,8 @@
 ─────────────────────────────────────────────── */
 .tl {
     display: block;
-    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-word;
     background: var(--term-bg);   /* explicit — prevents light-theme bleed */
     color: var(--term-white);
     animation: termIn .12s ease both;

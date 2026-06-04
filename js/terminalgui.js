@@ -197,24 +197,31 @@ const CMDS = {
 
     // ── about ─────────────────────────────────────
     about() {
+        const p = PORTFOLIO_DATA.profile;
         boxTop('ABOUT');
-        line(`│  <span class="c-cyan">Name    </span> : Jhon Westly A. Carmelotes`);
-        line(`│  <span class="c-cyan">Role    </span> : Software Engineer`);
-        line(`│  <span class="c-cyan">Bio     </span> : Hi, I'm Westly.`);
-        // TODO: Add more fields (e.g. Location, Languages spoken, etc.)
-        line(`│  <span class="c-cyan">Status  </span> : <span class="c-green">● Available for opportunities</span>`);
+        line(`│  <span class="c-cyan">Name    </span> : ${p.name}`);
+        line(`│  <span class="c-cyan">Role    </span> : ${p.role}`);
+        line(`│  <span class="c-cyan">Location</span> : ${p.location}`);
+        line(`│  <span class="c-cyan">Status  </span> : <span class="c-green">● ${p.status}</span>`);
+        blank();
+        p.bio.forEach(b => line(`│  ${b}`));
         boxBot();
         blank();
     },
 
     // ── skills ────────────────────────────────────
     skills() {
+        const s = PORTFOLIO_DATA.skills;
         boxTop('SKILLS');
-        line(`│  <span class="c-gray">// TODO: Add your tech stack here</span>`);
-        line(`│  <span class="c-gray">// Example layout:</span>`);
-        line(`│  <span class="c-gray">// Frontend  ──  React, TypeScript, CSS</span>`);
-        line(`│  <span class="c-gray">// Backend   ──  C# .NET, Python, Node.js</span>`);
-        line(`│  <span class="c-gray">// Tools     ──  Git, Docker, Azure</span>`);
+        line(`│  <span class="c-cyan">Languages   </span> ${s.languages.join(' · ')}`);
+        blank();
+        line(`│  <span class="c-cyan">Frameworks  </span> ${s.frameworks.join(' · ')}`);
+        blank();
+        line(`│  <span class="c-cyan">Cloud/DevOps</span> ${s.cloud.join(' · ')}`);
+        blank();
+        line(`│  <span class="c-cyan">Testing     </span> ${s.testing.join(' · ')}`);
+        blank();
+        line(`│  <span class="c-cyan">Methods     </span> ${s.methodologies.join(' · ')}`);
         boxBot();
         blank();
     },
@@ -222,33 +229,33 @@ const CMDS = {
     // ── projects ──────────────────────────────────
     projects() {
         boxTop('PROJECTS');
-        line(`│  <span class="c-gray">// TODO: Add your featured projects here</span>`);
-        line(`│  <span class="c-gray">// Example layout:</span>`);
-        line(`│  <span class="c-gray">// Project Name  ──  Short description</span>`);
-        line(`│  <span class="c-gray">// Tech: React · C# · PostgreSQL</span>`);
-        line(`│  <span class="c-gray">// Link: github.com/yourname/project</span>`);
+        line(`│  <span class="c-gray">// Coming soon — featured work will be listed here.</span>`);
         boxBot();
         blank();
     },
 
     // ── experience ────────────────────────────────
     experience() {
+        const exps = PORTFOLIO_DATA.experience;
         boxTop('EXPERIENCE');
-        line(`│  <span class="c-gray">// TODO: Add your work history here</span>`);
-        line(`│  <span class="c-gray">// Example layout:</span>`);
-        line(`│  <span class="c-gray">// Job Title  ──  Company · 20XX – Present</span>`);
-        line(`│  <span class="c-gray">// → Key achievement or responsibility</span>`);
+        exps.forEach((exp, i) => {
+            line(`│  <span class="c-green">${exp.title}</span>  <span class="c-gray">${exp.period}</span>`);
+            line(`│  <span class="c-cyan">${exp.company}</span>`);
+            exp.bullets.forEach(b => line(`│    <span class="c-gray">›</span> ${b}`));
+            if (i < exps.length - 1) blank();
+        });
         boxBot();
         blank();
     },
 
     // ── contact ───────────────────────────────────
     contact() {
+        const c = PORTFOLIO_DATA.contact;
         boxTop('CONTACT');
-        line(`│  <span class="c-gray">// TODO: Replace with your real contact info</span>`);
-        line(`│  <span class="c-cyan">Email   </span> <span class="c-gray">: your@email.com</span>`);
-        line(`│  <span class="c-cyan">GitHub  </span> <span class="c-gray">: github.com/yourname</span>`);
-        line(`│  <span class="c-cyan">LinkedIn</span> <span class="c-gray">: linkedin.com/in/yourname</span>`);
+        line(`│  <span class="c-cyan">Email   </span> : ${c.emails.join(' / ')}`);
+        line(`│  <span class="c-cyan">Phone   </span> : ${c.phone}`);
+        line(`│  <span class="c-cyan">LinkedIn</span> : ${c.linkedin}`);
+        line(`│  <span class="c-cyan">Location</span> : ${c.location}`);
         boxBot();
         blank();
     },
@@ -256,21 +263,20 @@ const CMDS = {
     // ── resume ────────────────────────────────────
     resume() {
         boxTop('RESUME');
-        line(`│  <span class="c-yellow">[ Coming Soon ]</span>`);
-        line(`│  <span class="c-gray">Resume will be linked here once available.</span>`);
-        // TODO: Replace with:
-        // line(`│  <span class="c-cyan">Download</span> : /assets/westly-resume.pdf`);
+        line(`│  <span class="c-cyan">File    </span> : Jhon_Westly_Carmelotes_Resume.docx`);
+        line(`│  <span class="c-gray">→ Download currently unavailable</span>`);
         boxBot();
         blank();
     },
 
     // ── certification ─────────────────────────────
     certification() {
+        const certs = PORTFOLIO_DATA.certifications;
         boxTop('CERTIFICATIONS');
-        line(`│  <span class="c-yellow">[ Coming Soon ]</span>`);
-        line(`│  <span class="c-gray">Certifications will be added manually.</span>`);
-        // TODO: Add entries like:
-        // line(`│  <span class="c-green">✓</span>  Cert Name  ──  Issuer · Year`);
+        certs.forEach(cert => {
+            line(`│  <span class="c-green">✓</span>  <span class="c-cyan">${cert.name}</span>  <span class="c-gray">(${cert.year})</span>`);
+            line(`│     <span class="c-gray">${cert.issuer}</span>`);
+        });
         boxBot();
         blank();
     },
@@ -280,7 +286,6 @@ const CMDS = {
         boxTop('THEMES');
         line(`│  <span class="c-yellow">[ Coming Soon ]</span>`);
         line(`│  <span class="c-gray">Theme switching will be available soon.</span>`);
-        // TODO: Implement theme switcher
         boxBot();
         blank();
     },
@@ -289,7 +294,6 @@ const CMDS = {
     chat() {
         line(`  <span class="c-yellow">[ Future Feature ]</span>`);
         line(`  <span class="c-gray">An AI chatbot is in the works. Stay tuned!</span>`);
-        // TODO: Wire up Python / FastAPI AI chatbot backend
         blank();
     },
 
@@ -301,7 +305,6 @@ const CMDS = {
     // ── help ──────────────────────────────────────
     help() {
         boxTop('AVAILABLE COMMANDS');
-        // Title Case descriptions; chat is crossed out (future feature)
         line(`│  <span class="c-green">about        </span> <span class="c-gray">→</span>  Who Am I?`);
         line(`│  <span class="c-green">skills       </span> <span class="c-gray">→</span>  Tech Stack`);
         line(`│  <span class="c-green">projects     </span> <span class="c-gray">→</span>  Featured Work`);
@@ -394,7 +397,7 @@ async function bootTerminal() {
     // Logo appears immediately — not buffered
     LOGO.forEach(l => appendLine(l, 'c-green'));
     blank();
-    appendLine('  <span class="c-green">JWC Terminal</span>  <span class="c-gray">v1.0.0</span>');
+    appendLine('  <span class="c-green">JWC Terminal</span>  <span class="c-gray">v1.0.1</span>');
     appendLine(`  Type <span class="c-cyan">'help'</span> to see available commands.`, 'c-gray');
     blank();
 

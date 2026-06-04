@@ -113,12 +113,6 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
     }
 });
 
-/* ══════════════════════════════════════════════════
-   MOBILE TERMINAL DRAWER
-   Slides the terminal panel up from the bottom as a
-   sheet on tablet / phone. The FAB button toggles it.
-   Tapping the backdrop also closes it.
-══════════════════════════════════════════════════ */
 function toggleMobileTerminal() {
     const panel    = document.querySelector('.terminal-panel');
     const backdrop = document.getElementById('termBackdrop');
@@ -143,9 +137,107 @@ function toggleMobileTerminal() {
     }
 }
 
-/* ── Init ────────────────────────────────────────
-   Order matters: theme first (avoids flash),
-   then boot the terminal.
-─────────────────────────────────────────────────── */
 initTheme();
 bootTerminal();
+document.getElementById('certCount').textContent = document.querySelectorAll('.cert-card').length || '—';
+
+/* ══════════════════════════════════════════════════
+   PROFILE PHOTO ROTATION
+   Cycles 3 photos every 30 s with a 0.4 s fade.
+   The "JW" initials remain as a fallback if any
+   image fails to load.
+══════════════════════════════════════════════════ */
+const PROFILE_PICS = [
+    'assets/Profile%20Pic%201.jpg',
+    'assets/Profile%20Pic%202.jpg',
+    'assets/Profile%20Pic%203.jpg',
+    'assets/Profile%20Pic%204.jpg'
+];
+let profilePicIdx = 0;
+
+(function initProfilePic() {
+    const img = document.getElementById('profilePhoto');
+    if (!img) return;
+    img.addEventListener('load', () => img.classList.add('loaded'));
+    img.src = PROFILE_PICS[0];
+})();
+
+setInterval(function () {
+    const img = document.getElementById('profilePhoto');
+    if (!img) return;
+    img.classList.remove('loaded');
+    profilePicIdx = (profilePicIdx + 1) % PROFILE_PICS.length;
+    setTimeout(() => {
+        const onLoad = () => { img.classList.add('loaded'); img.removeEventListener('load', onLoad); };
+        img.addEventListener('load', onLoad);
+        img.src = PROFILE_PICS[profilePicIdx];
+    }, 420);
+}, 30000);
+
+/* ══════════════════════════════════════════════════
+   CERTIFICATION LIGHTBOX
+   Note: PDF rendering requires a served URL (http/https).
+   The "Open in new tab" button works in all cases.
+══════════════════════════════════════════════════ */
+function openCert(path, title) {
+    const modal    = document.getElementById('certModal');
+    const frame    = document.getElementById('certModalFrame');
+    const titleEl  = document.getElementById('certModalTitle');
+    const openLink = document.getElementById('certModalOpenLink');
+    const encoded  = encodeURI(path);
+
+    titleEl.textContent = title;
+    frame.src           = encoded;
+    openLink.href       = encoded;
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('active');
+}
+
+function closeCert() {
+    const modal = document.getElementById('certModal');
+    const frame = document.getElementById('certModalFrame');
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    setTimeout(() => { frame.src = ''; }, 250);
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape')     { closeCert(); closePhoto(); }
+    if (e.key === 'ArrowLeft')  { const m = document.getElementById('photoModal'); if (m?.classList.contains('active')) shiftPhoto(-1); }
+    if (e.key === 'ArrowRight') { const m = document.getElementById('photoModal'); if (m?.classList.contains('active')) shiftPhoto(1); }
+});
+
+/* ══════════════════════════════════════════════════
+   PHOTO ZOOM
+   Opens the current profile photo in a lightbox with
+   prev/next arrows to cycle through all photos.
+══════════════════════════════════════════════════ */
+let photoModalIdx = 0;
+
+function openPhoto() {
+    const img = document.getElementById('profilePhoto');
+    if (!img || !img.classList.contains('loaded')) return;
+    photoModalIdx = profilePicIdx;
+    const modal = document.getElementById('photoModal');
+    document.getElementById('photoModalImg').src = PROFILE_PICS[photoModalIdx];
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('active');
+}
+
+function closePhoto() {
+    const modal = document.getElementById('photoModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+}
+
+function shiftPhoto(dir) {
+    const img = document.getElementById('photoModalImg');
+    if (!img) return;
+    img.style.opacity = '0';
+    setTimeout(() => {
+        photoModalIdx = (photoModalIdx + dir + PROFILE_PICS.length) % PROFILE_PICS.length;
+        img.src = PROFILE_PICS[photoModalIdx];
+        img.style.opacity = '1';
+    }, 180);
+}

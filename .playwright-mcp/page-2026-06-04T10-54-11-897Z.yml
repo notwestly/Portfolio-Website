@@ -1,0 +1,129 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "JWC" [ref=e3] [cursor=pointer]:
+      - /url: "#"
+    - button "" [ref=e4] [cursor=pointer]:
+      - generic [ref=e5]: 
+  - generic [ref=e6]:
+    - text: 
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e9]:
+          - text: JW
+          - img "Jhon Westly" [ref=e10]
+        - generic [ref=e11]:
+          - heading "Jhon Westly A. Carmelotes" [level=2] [ref=e12]
+          - paragraph [ref=e13]: Software Engineer
+          - generic [ref=e14]: Open to opportunities
+        - generic [ref=e16]:
+          - link " GitHub" [ref=e17] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e18]: 
+            - text: GitHub
+          - link " LinkedIn" [ref=e19] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/jhon-westly-a-carmelotes/
+            - generic [ref=e20]: 
+            - text: LinkedIn
+          - link " Email" [ref=e21] [cursor=pointer]:
+            - /url: mailto:westlycarmelotes@gmail.com
+            - generic [ref=e22]: 
+            - text: Email
+      - generic [ref=e23]:
+        - generic [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: 
+          - text: About
+        - generic [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: 
+          - text: Skills
+        - generic [ref=e28] [cursor=pointer]:
+          - generic [ref=e29]: 
+          - text: Projects
+        - generic [ref=e30] [cursor=pointer]:
+          - generic [ref=e31]: 
+          - text: Experience
+        - generic [ref=e32] [cursor=pointer]:
+          - generic [ref=e33]: 
+          - text: Certifications
+        - generic [ref=e34] [cursor=pointer]:
+          - generic [ref=e35]: 
+          - text: Contact
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - heading "Why Hello There! 👋" [level=4] [ref=e38]
+          - paragraph [ref=e39]: I'm Westly — a Software Engineer based in the Philippines with a genuine love for building things that work, and figuring out how to make them work better.
+          - paragraph [ref=e40]: I graduated with a B.S. in Computer Engineering from Lyceum of Alabang as a Dean's Lister in 2023, and jumped straight into the industry shortly after. Before that, I sharpened my full-stack fundamentals through an intensive 16-week bootcamp at Village88, where I earned Best in Capstone for QA. I then leveled up on the cloud side through AWS re/Start (Batch 9), completing training in Linux, networking, security, and core AWS services.
+          - paragraph [ref=e41]: Most recently, I spent nearly two years at Amdocs working on live enterprise products. I was promoted from Junior to Software Engineer within seven months, went on to deliver 9 production deployments in 2025, and mentored two new hires along the way.
+          - paragraph [ref=e42]: I work across the stack, and while I'll admit I may not have every syntax memorized, I've learned that knowing exactly what to look for and how to move forward is more valuable anyway. I pick things up fast, adapt well, and I genuinely enjoy the problem-solving side of engineering.
+          - paragraph [ref=e43]: If you're looking for someone reliable, growth-oriented, and ready to contribute from day one send me an email.
+        - generic [ref=e44]:
+          - generic [ref=e45]:
+            - generic [ref=e46]: 21 Months
+            - generic [ref=e47]: Total Exp.
+          - generic [ref=e48]:
+            - generic [ref=e49]: —
+            - generic [ref=e50]: Projects
+          - generic [ref=e51]:
+            - generic [ref=e52]: "6"
+            - generic [ref=e53]: Certifications
+          - generic [ref=e54]:
+            - generic [ref=e55]: ∞
+            - generic [ref=e56]: Coffee Consumed
+      - text:                      
+    - generic [ref=e57]:
+      - generic [ref=e62]: guest — bash
+      - generic [ref=e63]:
+        - generic [ref=e64]: ██╗ ██╗ ██╗ ██████╗
+        - generic [ref=e65]: ██║ ██║ ██║ ██╔════╝
+        - generic [ref=e66]: ██║ ██║ █╗ ██║ ██║
+        - generic [ref=e67]: ██ ██║ ╚██╗███╔╝ ╚██████╗
+        - generic [ref=e68]: ╚════╝ ╚═╝╚═╝ ╚═════╝
+        - generic [ref=e69]: JWC Terminal v1.0.0
+        - generic [ref=e70]: Type 'help' to see available commands.
+      - generic [ref=e71]:
+        - button "👤 about — Who Am I? ›" [ref=e72] [cursor=pointer]:
+          - generic [ref=e73]:
+            - generic [ref=e74]: 👤
+            - generic [ref=e75]: about
+            - generic [ref=e76]: — Who Am I?
+          - generic [ref=e77]: ›
+        - button "⚡ skills — Tech Stack ›" [ref=e78] [cursor=pointer]:
+          - generic [ref=e79]:
+            - generic [ref=e80]: ⚡
+            - generic [ref=e81]: skills
+            - generic [ref=e82]: — Tech Stack
+          - generic [ref=e83]: ›
+        - button "🚀 projects — Featured Work ›" [ref=e84] [cursor=pointer]:
+          - generic [ref=e85]:
+            - generic [ref=e86]: 🚀
+            - generic [ref=e87]: projects
+            - generic [ref=e88]: — Featured Work
+          - generic [ref=e89]: ›
+        - button "💼 experience — Work History ›" [ref=e90] [cursor=pointer]:
+          - generic [ref=e91]:
+            - generic [ref=e92]: 💼
+            - generic [ref=e93]: experience
+            - generic [ref=e94]: — Work History
+          - generic [ref=e95]: ›
+        - button "📬 contact — Get In Touch ›" [ref=e96] [cursor=pointer]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: 📬
+            - generic [ref=e99]: contact
+            - generic [ref=e100]: — Get In Touch
+          - generic [ref=e101]: ›
+      - generic [ref=e102]:
+        - generic [ref=e103]: guest:~$
+        - textbox "type a command..." [disabled] [ref=e104]
+  - button "Toggle terminal" [ref=e105] [cursor=pointer]:
+    - generic [ref=e106]: 
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#"
+            - generic: 
+            - text: Open in new tab
+          - button:
+            - generic: 
+      - iframe [ref=e107]:
+        

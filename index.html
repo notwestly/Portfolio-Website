@@ -4,73 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jhon Westly A. Carmelotes | Software Engineer</title>
-
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!-- Google Fonts: Rajdhani · JetBrains Mono · Figtree -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/terminal.css">
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════
-     NAVBAR
-══════════════════════════════════════════════ -->
 <nav class="site-navbar">
     <a class="nav-logo" href="#">JW<span>C</span></a>
-
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
         <i class="bi bi-moon-fill" id="themeIcon"></i>
         <span id="themeLabel">Dark</span>
     </button>
-
     <div class="nav-status">
         <span class="dot-pulse"></span>
-        available for opportunities
+        open to work
     </div>
 </nav>
 
-
-<!-- ══════════════════════════════════════════════
-     MAIN LAYOUT
-══════════════════════════════════════════════ -->
 <div class="main-wrap" id="mainWrap">
 
-    <!-- Panel toggle button — sits on the divider between panels -->
     <button class="term-toggle-btn" id="termToggle" onclick="toggleTerminal()">
         <i class="bi bi-chevron-right" id="termToggleIcon"></i>
     </button>
 
-    <!-- ─── LEFT: PROFILE PANEL (67%) ──────────── -->
     <div class="profile-panel">
 
-        <!-- Profile Card -->
         <div class="profile-card">
-            <div class="profile-avatar">JW</div>
-
+            <div class="profile-avatar" id="profileAvatar" onclick="openPhoto()" title="Click to view">JW
+                <img id="profilePhoto" src="" alt="Jhon Westly" />
+            </div>
             <div class="profile-info">
                 <h2 class="profile-name">Jhon Westly A. Carmelotes</h2>
-                <p class="profile-title">// Software Engineer</p>
+                <p class="profile-title">Software Engineer</p>
                 <span class="profile-status">
                     <span class="dot-pulse"></span>
                     Open to opportunities
                 </span>
             </div>
-
             <div class="profile-socials">
-                <!-- TODO: Replace # with your real profile URLs -->
-                <a href="#" class="social-btn"><i class="bi bi-github"></i> GitHub</a>
-                <a href="#" class="social-btn"><i class="bi bi-linkedin"></i> LinkedIn</a>
-                <a href="#" class="social-btn"><i class="bi bi-envelope"></i> Email</a>
+                <a href="https://github.com/notwestly" class="social-btn" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/jhon-westly-a-carmelotes/" class="social-btn" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                <a href="mailto:westlycarmelotes@gmail.com" class="social-btn"><i class="bi bi-envelope"></i> Email</a>
             </div>
         </div>
 
-        <!-- Tab Navigation -->
         <div class="profile-tabs" id="profileTabs">
             <div class="profile-tab active" data-tab="about">
                 <i class="bi bi-person-circle"></i> About
@@ -84,101 +64,279 @@
             <div class="profile-tab" data-tab="experience">
                 <i class="bi bi-briefcase"></i> Experience
             </div>
+            <div class="profile-tab" data-tab="certifications">
+                <i class="bi bi-patch-check"></i> Certifications
+            </div>
             <div class="profile-tab" data-tab="contact">
                 <i class="bi bi-envelope-at"></i> Contact
             </div>
         </div>
 
-        <!-- ── About ──────────────────────────── -->
         <div class="tab-pane active" id="tab-about">
             <div class="bio-card">
-                <h4>Hello, World! 👋</h4>
-                <!--
-                    TODO: Replace with your full bio.
-                    Bootstrap handles text reflow automatically — just add more <p> tags.
-                -->
-                <p>Hi, I'm Westly.</p>
+                <h4>Why Hello There! 👋</h4>
+                <p>I'm Westly a Software Engineer based in the Philippines with a genuine love for building things that work, and figuring out how to make them work better.</p>
+                <p>I graduated with a B.S. in Computer Engineering from Lyceum of Alabang as a Dean's Lister in 2023, and jumped straight into the industry shortly after. Before that, I sharpened my full-stack fundamentals through an intensive 16-week bootcamp at Village88, where I earned Best in Capstone for QA. I then leveled up on the cloud side through AWS re/Start (Batch 9), completing training in Linux, networking, security, and core AWS services.</p>
+                <p>Most recently, I spent nearly two years at Amdocs working on live enterprise products. I was promoted from Junior to Software Engineer within seven months, went on to deliver 14 production deployments across my tenure at Amdocs, and mentored two new hires along the way.</p>
+                <p>I work across the stack, and while I'll admit I may not have every syntax memorized, I've learned that knowing exactly what to look for and how to move forward is more valuable anyway. I pick things up fast, adapt well, and I genuinely enjoy the problem-solving side of engineering.</p>
+                <p>If you're looking for someone reliable, growth-oriented, and ready to contribute from day one send me an email.</p>
             </div>
-
             <div class="stats-grid">
-                <!-- TODO: Fill in your real stats -->
                 <div class="stat-card">
-                    <div class="stat-value">—</div>
-                    <div class="stat-label">Years Exp.</div>
+                    <div class="stat-value">21 Months</div>
+                    <div class="stat-label">Total Exp.</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">—</div>
                     <div class="stat-label">Projects</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">—</div>
+                    <div class="stat-value" id="certCount">—</div>
                     <div class="stat-label">Certifications</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">∞</div>
-                    <div class="stat-label">Coffee / Day</div>
+                    <div class="stat-label">Coffee Consumed</div>
                 </div>
             </div>
         </div>
 
-        <!-- ── Skills ────────────────────────── -->
         <div class="tab-pane" id="tab-skills">
-            <div class="placeholder-card">
-                <i class="bi bi-lightning-charge-fill"></i>
-                <div class="placeholder-label">Skills</div>
-                <!-- TODO: Add your tech stack and proficiency levels here -->
-                <p>// TODO: Add your tech stack and proficiency levels</p>
+            <div class="skills-section">
+                <div class="skills-category-group">
+                    <h6 class="skills-category"><i class="bi bi-code-square"></i> Languages</h6>
+                    <div class="skills-tags">
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                    </div>
+                </div>
+                <div class="skills-category-group">
+                    <h6 class="skills-category"><i class="bi bi-layers"></i> Frameworks &amp; Libraries</h6>
+                    <div class="skills-tags">
+                        <span class="skill-tag">.NET</span>
+                        <span class="skill-tag">Laravel</span>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">jQuery</span>
+                        <span class="skill-tag">WordPress</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Node.js</span>
+                    </div>
+                </div>
+                <div class="skills-category-group">
+                    <h6 class="skills-category"><i class="bi bi-cloud"></i> Cloud &amp; DevOps</h6>
+                    <div class="skills-tags">
+                        <span class="skill-tag">AWS (EKS, S3, CloudWatch, Elastic Beanstalk)</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD Pipelines</span>
+                        <span class="skill-tag">Cloud Migration</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+                <div class="skills-category-group">
+                    <h6 class="skills-category"><i class="bi bi-bug"></i> Testing &amp; QA</h6>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Selenium</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">UI Automation</span>
+                        <span class="skill-tag">Manual Testing</span>
+                    </div>
+                </div>
+                <div class="skills-category-group">
+                    <h6 class="skills-category"><i class="bi bi-clipboard-check"></i> Methodologies</h6>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Agile / Scrum</span>
+                        <span class="skill-tag">SDLC</span>
+                        <span class="skill-tag">ORM &amp; Query Optimization</span>
+                        <span class="skill-tag">Database Design</span>
+                        <span class="skill-tag">Lean Six Sigma (Yellow Belt)</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- ── Projects ──────────────────────── -->
         <div class="tab-pane" id="tab-projects">
             <div class="placeholder-card">
-                <i class="bi bi-folder2-open"></i>
-                <div class="placeholder-label">Projects</div>
-                <!-- TODO: Add your featured projects, links, and tech tags here -->
-                <p>// TODO: Add your featured projects, links, and tech tags</p>
+                <i class="bi bi-hammer"></i>
+                <div class="placeholder-label">Under Construction</div>
+                <p>Projects coming soon — currently building something worth showing.</p>
             </div>
         </div>
 
-        <!-- ── Experience ────────────────────── -->
         <div class="tab-pane" id="tab-experience">
-            <div class="placeholder-card">
-                <i class="bi bi-briefcase-fill"></i>
-                <div class="placeholder-label">Experience</div>
-                <!-- TODO: Add your work history, roles, and key achievements here -->
-                <p>// TODO: Add your work history, roles, and key achievements</p>
+            <div class="experience-card">
+                <div class="exp-header">
+                    <div>
+                        <h5 class="exp-title">Software Engineer</h5>
+                        <span class="exp-company">Amdocs &mdash; Ortigas, Pasig, Metro Manila</span>
+                    </div>
+                    <span class="exp-date">January 2025 &ndash; March 2026</span>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Delivered an end-to-end full-stack enhancement to a live enterprise product within a 36 man-day deadline, owning architecture, development, testing, and deployment.</li>
+                    <li>Built new backend processes in .NET, C#, PHP, SQL, and JavaScript, aligning technical solutions with evolving business requirements.</li>
+                    <li>Acted as primary backend developer across multiple concurrent projects while mentoring two new hires through code reviews and technical guidance.</li>
+                    <li>Shipped 9 production deployments in 2025 and 2 more in early 2026, with post-deployment support on 4 releases.</li>
+                    <li>Collaborated with team and project managers to scope requirements through Agile ceremonies, presenting progress and release readiness in sprint reviews.</li>
+                </ul>
+            </div>
+            <div class="experience-card">
+                <div class="exp-header">
+                    <div>
+                        <h5 class="exp-title">Junior Software Engineer</h5>
+                        <span class="exp-company">Amdocs &mdash; Ortigas, Pasig, Metro Manila</span>
+                    </div>
+                    <span class="exp-date">June 2024 &ndash; December 2024</span>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Supported a large-scale cloud migration within a cross-functional engineering team, moving legacy components to core AWS services.</li>
+                    <li>Developed and maintained application features in .NET and JavaScript within cloud-enabled architectures.</li>
+                    <li>Participated in 2 cloud migration deployments and 1 production release, meeting performance, reliability, and security standards.</li>
+                    <li>Gained hands-on experience with enterprise Agile workflows, CI/CD pipelines, and production release processes.</li>
+                </ul>
+            </div>
+            <div class="experience-card">
+                <div class="exp-header">
+                    <div>
+                        <h5 class="exp-title">Full Stack Web Development OJT / Bootcamp</h5>
+                        <span class="exp-company">Village88 &mdash; Remote</span>
+                    </div>
+                    <span class="exp-date">January 2023 &ndash; April 2023</span>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Completed a 16-week full-stack web development bootcamp covering HTML, CSS, JavaScript, jQuery, PHP, CodeIgniter, and MySQL.</li>
+                    <li>Performed manual and automated QA testing on a live website using Selenium IDE; earned Best in Capstone for the QA project.</li>
+                    <li>Built a front-end and back-end wireframe using the full stack within a 9-hour time constraint during the Advanced PHP module.</li>
+                </ul>
             </div>
         </div>
 
-        <!-- ── Contact ───────────────────────── -->
+        <div class="tab-pane" id="tab-certifications">
+            <div class="certs-grid">
+                <div class="cert-card" onclick="openCert('assets/Certifications/PSU Agentic Developement Certification.pdf','Agentic Development using Cursor')">
+                    <div class="cert-icon"><i class="bi bi-cpu"></i></div>
+                    <div class="cert-body">
+                        <h6 class="cert-title">Agentic Development using Cursor</h6>
+                        <span class="cert-label">AGS AImpower &middot; Amdocs CBS PSU Jan 2026</span>
+                    </div>
+                    <span class="cert-view"><i class="bi bi-eye"></i></span>
+                </div>
+                <div class="cert-card" onclick="openCert('assets/Certifications/CertificateOfCompletionPMF.pdf','Project Management Fundamentals')">
+                    <div class="cert-icon"><i class="bi bi-diagram-3"></i></div>
+                    <div class="cert-body">
+                        <h6 class="cert-title">Project Management Fundamentals</h6>
+                        <span class="cert-label">Amdocs MOOC &middot; Sep 2025</span>
+                    </div>
+                    <span class="cert-view"><i class="bi bi-eye"></i></span>
+                </div>
+                <div class="cert-card" onclick="openCert('assets/Certifications/CertificateOfCompletionAGILE.pdf','Agile &amp; Scaled Agile Fundamentals')">
+                    <div class="cert-icon"><i class="bi bi-arrow-repeat"></i></div>
+                    <div class="cert-body">
+                        <h6 class="cert-title">Agile &amp; Scaled Agile Fundamentals</h6>
+                        <span class="cert-label">Amdocs &middot; Jan 2025</span>
+                    </div>
+                    <span class="cert-view"><i class="bi bi-eye"></i></span>
+                </div>
+                <div class="cert-card" onclick="openCert('assets/Certifications/JhonWestlyACarmelotes_ORBITFA678f5160edce1.pdf','ASEAN Youth for Digital Action')">
+                    <div class="cert-icon"><i class="bi bi-globe-asia-australia"></i></div>
+                    <div class="cert-body">
+                        <h6 class="cert-title">ASEAN Youth for Digital Action</h6>
+                        <span class="cert-label">AYDA &middot; Jan 2025</span>
+                    </div>
+                    <span class="cert-view"><i class="bi bi-eye"></i></span>
+                </div>
+                <div class="cert-card" onclick="openCert('assets/Certifications/AWS RESTART Carmelotes, Jhon Westly A.pdf','AWS re/Start Program')">
+                    <div class="cert-icon"><i class="bi bi-cloud-check-fill"></i></div>
+                    <div class="cert-body">
+                        <h6 class="cert-title">AWS re/Start Program</h6>
+                        <span class="cert-label">AWS &middot; EDK &middot; October 2024</span>
+                    </div>
+                    <span class="cert-view"><i class="bi bi-eye"></i></span>
+                </div>
+                <div class="cert-card" onclick="openCert('assets/Certifications/GLETC-CLSSYB-2879 - J. Carmelotes.pdf','Lean Six Sigma Yellow Belt')">
+                    <div class="cert-icon"><i class="bi bi-clipboard-data"></i></div>
+                    <div class="cert-body">
+                        <h6 class="cert-title">Lean Six Sigma Yellow Belt</h6>
+                        <span class="cert-label">Elevate Six Sigma &middot; Jul 2023</span>
+                    </div>
+                    <span class="cert-view"><i class="bi bi-eye"></i></span>
+                </div>
+                <div class="cert-card" onclick="openCert('assets/Certifications/Special Award - Best Presenter - J. Carmelotes-1.pdf','Best Presenter Award')">
+                    <div class="cert-icon cert-icon--gold"><i class="bi bi-trophy"></i></div>
+                    <div class="cert-body">
+                        <h6 class="cert-title">Best Presenter</h6>
+                        <span class="cert-label">Elevate Six Sigma &middot; Jul 2023</span>
+                    </div>
+                    <span class="cert-view"><i class="bi bi-eye"></i></span>
+                </div>
+                <div class="cert-card" onclick="openCert('assets/Certifications/7_Carmelotes, Jhon Westly A.-1.pdf','Village88 Certificate of Completion')">
+                    <div class="cert-icon cert-icon--gold"><i class="bi bi-patch-check-fill"></i></div>
+                    <div class="cert-body">
+                        <h6 class="cert-title">Certificate of Completion</h6>
+                        <span class="cert-label">Village88 &middot; April 2023</span>
+                    </div>
+                    <span class="cert-view"><i class="bi bi-eye"></i></span>
+                </div>
+                <div class="cert-card" onclick="openCert('assets/Certifications/20_Carmelotes, Jhon Westly A.-1.pdf','Best Capstone in QA')">
+                    <div class="cert-icon cert-icon--gold"><i class="bi bi-trophy"></i></div>
+                    <div class="cert-body">
+                        <h6 class="cert-title">Best Capstone in QA</h6>
+                        <span class="cert-label">Village88 &middot; April 2023</span>
+                    </div>
+                    <span class="cert-view"><i class="bi bi-eye"></i></span>
+                </div>
+            </div>
+        </div>
+
         <div class="tab-pane" id="tab-contact">
-            <div class="placeholder-card">
-                <i class="bi bi-envelope-open-fill"></i>
-                <div class="placeholder-label">Contact</div>
-                <!-- TODO: Add your contact form, email, and social links here -->
-                <p>// TODO: Add your contact form, email, and social links</p>
+            <div class="contact-card">
+                <div class="contact-item">
+                    <i class="bi bi-envelope-fill"></i>
+                    <div class="contact-links">
+                        <a href="mailto:westlycarmelotes@gmail.com">westlycarmelotes@gmail.com</a>
+                        <a href="mailto:mewestly@gmail.com">mewestly@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="bi bi-telephone-fill"></i>
+                    <a href="tel:+639155112210">+63 915 511 2210</a>
+                </div>
+                <div class="contact-item">
+                    <i class="bi bi-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/jhon-westly-a-carmelotes/" target="_blank" rel="noopener noreferrer">
+                        linkedin.com/in/jhon-westly-a-carmelotes
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <i class="bi bi-github"></i>
+                    <a href="https://github.com/notwestly" target="_blank" rel="noopener noreferrer">
+                        github.com/notwestly
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <span>Currently in the Philippines</span>
+                </div>
             </div>
         </div>
 
-    </div><!-- /profile-panel -->
+    </div>
 
-
-    <!-- ─── RIGHT: TERMINAL PANEL (33%) ─────────── -->
     <div class="terminal-panel">
-
-        <!-- macOS-style titlebar -->
         <div class="term-bar">
             <span class="term-dot r"></span>
             <span class="term-dot y"></span>
             <span class="term-dot g"></span>
             <span class="term-bar-title">guest — bash</span>
         </div>
-
-        <!-- Output area — terminal prints here -->
         <div class="term-out" id="termOut"></div>
-
-        <!-- Clickable quick-command buttons -->
         <div class="term-shortcuts">
             <button class="term-btn" onclick="runCmd('about')">
                 <span class="term-btn-left">
@@ -221,8 +379,6 @@
                 <span class="term-btn-arrow">›</span>
             </button>
         </div>
-
-        <!-- Command input -->
         <div class="term-input-row">
             <span class="term-prompt-label">guest:~$</span>
             <input
@@ -234,25 +390,46 @@
                 placeholder="type a command..."
             >
         </div>
+    </div>
 
-    </div><!-- /terminal-panel -->
-
-    <!-- Mobile backdrop — dims the page when terminal drawer is open -->
     <div class="term-backdrop" id="termBackdrop" onclick="toggleMobileTerminal()"></div>
 
-</div><!-- /main-wrap -->
+</div>
 
-<!-- Mobile FAB — opens the terminal drawer on tablet / phone -->
 <button class="term-fab" id="termFab" onclick="toggleMobileTerminal()" aria-label="Toggle terminal">
     <i class="bi bi-terminal-fill"></i>
 </button>
 
+<div id="photoModal" class="photo-modal" aria-hidden="true">
+    <div class="photo-modal-backdrop" onclick="closePhoto()"></div>
+    <div class="photo-modal-frame">
+        <button class="photo-nav photo-nav--prev" onclick="shiftPhoto(-1)" aria-label="Previous photo">&#8249;</button>
+        <img id="photoModalImg" src="" alt="Jhon Westly" class="photo-modal-img" />
+        <button class="photo-nav photo-nav--next" onclick="shiftPhoto(1)" aria-label="Next photo">&#8250;</button>
+    </div>
+</div>
 
-<!-- Bootstrap 5 JS -->
+<div id="certModal" class="cert-modal" aria-hidden="true">
+    <div class="cert-modal-backdrop" onclick="closeCert()"></div>
+    <div class="cert-modal-dialog">
+        <div class="cert-modal-header">
+            <span class="cert-modal-title" id="certModalTitle"></span>
+            <div class="cert-modal-actions">
+                <a id="certModalOpenLink" href="#" target="_blank" rel="noopener noreferrer" class="cert-open-tab-btn">
+                    <i class="bi bi-box-arrow-up-right"></i> Open in new tab
+                </a>
+                <button class="cert-close-btn" onclick="closeCert()" aria-label="Close">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+        <iframe id="certModalFrame" src="" frameborder="0" allowfullscreen class="cert-modal-frame"></iframe>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Terminal engine (commands, input handling, boot sequence) -->
+<script src="js/data.js"></script>
 <script src="js/terminalgui.js"></script>
-<!-- Webpage controls (tabs, navbar, mobile check, init) -->
 <script src="js/webpage.js"></script>
 
 </body>
