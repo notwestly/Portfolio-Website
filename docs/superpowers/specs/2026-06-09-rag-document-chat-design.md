@@ -128,9 +128,12 @@ CREATE TABLE documents (
   created_at  timestamptz DEFAULT now()
 );
 
+-- Index is optional for v1 (portfolio volumes are in the hundreds of rows, not millions).
+-- If added: rule of thumb is lists = sqrt(row_count). Use lists = 10 for ~100 chunks.
+-- Skip entirely until query latency is actually a problem.
 CREATE INDEX ON documents
   USING ivfflat (embedding vector_cosine_ops)
-  WITH (lists = 100);
+  WITH (lists = 10);
 ```
 
 `session_id` ties chunks to an upload session so the similarity search is scoped to the active document.
@@ -139,11 +142,13 @@ CREATE INDEX ON documents
 
 ## API Routes
 
-| Method | Path | Description |
-|---|---|---|
-| `POST` | `/upload` | Accepts PDF, runs ingest pipeline, returns `session_id` |
-| `POST` | `/chat` | Accepts `{session_id, messages}`, returns SSE stream |
-| `DELETE` | `/session/{session_id}` | Cleans up chunks for a session from Supabase |
+| Method | Path | Description | Response |
+|---|---|---|---|
+| `POST` | `/upload` | Accepts PDF, runs ingest pipeline, returns `session_id` | `application/json` |
+| `POST` | `/chat` | Accepts `{session_id, messages}`, streams tokens | `text/event-stream` (SSE) |
+| `DELETE` | `/session/{session_id}` | Cleans up chunks for a session from Supabase | `application/json` |
+
+**CORS:** `main.py` must mount `CORSMiddleware` before any routes. Vite dev server runs on `localhost:5173`, FastAPI on `localhost:8000` — without this every browser request fails with a CORS error. Allow origins `["http://localhost:5173"]` in dev, tighten in production.
 
 ---
 
