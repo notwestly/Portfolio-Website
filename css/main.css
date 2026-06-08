@@ -1,8 +1,4 @@
-/* ══════════════════════════════════════════
-   CSS VARIABLES — DARK  (default)
-══════════════════════════════════════════ */
 :root {
-    /* Panel / page palette */
     --panel-bg:        #070c1a;
     --panel-surface:   #0d1528;
     --panel-card:      #111d35;
@@ -14,7 +10,6 @@
     --text-secondary:  #7a9abb;
     --text-muted:      #3a5a78;
 
-    /* Navbar — dark-mode defaults */
     --nav-bg:          #040810;
     --nav-border:      transparent;
     --nav-shadow:      none;
@@ -23,17 +18,11 @@
     --nav-text:        #8aa8c8;
     --nav-status:      #22aa10;
 
-    /* Typography */
     --font-display:    'Rajdhani', sans-serif;
     --font-body:       'Figtree', sans-serif;
     --font-mono:       'JetBrains Mono', monospace;
 }
 
-/* ══════════════════════════════════════════
-   CSS VARIABLES — LIGHT
-   Panel / text vars only — terminal vars
-   live in terminal.css and are never touched.
-══════════════════════════════════════════ */
 [data-theme="light"] {
     --panel-bg:        #f0f5ff;
     --panel-surface:   #ffffff;
@@ -46,7 +35,6 @@
     --text-secondary:  #3a5270;
     --text-muted:      #6882a0;
 
-    /* Navbar — light-mode overrides */
     --nav-bg:          #ffffff;
     --nav-border:      #e0e8f8;
     --nav-shadow:      0 1px 12px rgba(0,0,0,0.07);
@@ -56,9 +44,6 @@
     --nav-status:      #229900;
 }
 
-/* ══════════════════════════════════════════
-   RESET / BASE
-══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; }
 
 html, body {
@@ -70,11 +55,6 @@ html, body {
     overflow: hidden;
 }
 
-/* ══════════════════════════════════════════
-   NAVBAR
-   Uses CSS variables so both themes work
-   without duplication.
-══════════════════════════════════════════ */
 .site-navbar {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -90,7 +70,6 @@ html, body {
     transition: background .25s, border-color .25s, box-shadow .25s;
 }
 
-/* Gradient accent rule at the bottom of the navbar */
 .site-navbar::after {
     content: '';
     position: absolute;
@@ -103,7 +82,6 @@ html, body {
     opacity: 0.5;
 }
 
-/* Logo */
 .nav-logo {
     font-family: var(--font-display);
     font-size: 1.2rem;
@@ -118,7 +96,6 @@ html, body {
     transition: color .25s;
 }
 
-/* ── Theme toggle button ── */
 .theme-toggle {
     display: flex;
     align-items: center;
@@ -141,7 +118,6 @@ html, body {
     color: var(--accent-cyan);
 }
 
-/* Status badge */
 .nav-status {
     display: flex;
     align-items: center;
@@ -160,9 +136,6 @@ html, body {
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-/* ══════════════════════════════════════════
-   MAIN LAYOUT
-══════════════════════════════════════════ */
 .main-wrap {
     display: flex;
     height: calc(100vh - 54px);
@@ -171,11 +144,6 @@ html, body {
     position: relative;   /* for .term-toggle-btn absolute positioning */
 }
 
-/* ══════════════════════════════════════════
-   PANEL TOGGLE BUTTON
-   Sits on the divider; slides to right edge
-   when the terminal panel is collapsed.
-══════════════════════════════════════════ */
 .term-toggle-btn {
     position: absolute;
     left: 66.666%;
@@ -203,16 +171,10 @@ html, body {
     color: #fff;
 }
 
-/* Floats to right edge when terminal is hidden */
 .main-wrap.terminal-hidden .term-toggle-btn {
     left: calc(100% - 13px);
 }
 
-/* Toggle button hidden below 1025 px — handled in the tablet media query below */
-
-/* ══════════════════════════════════════════
-   LEFT — PROFILE PANEL  (67%)
-══════════════════════════════════════════ */
 .profile-panel {
     flex: 0 0 66.666%;
     max-width: 66.666%;
@@ -228,13 +190,11 @@ html, body {
 .profile-panel::-webkit-scrollbar-track { background: transparent; }
 .profile-panel::-webkit-scrollbar-thumb { background: var(--panel-border); border-radius: 2px; }
 
-/* Expand to full width when terminal is hidden */
 .main-wrap.terminal-hidden .profile-panel {
     flex: 0 0 100%;
     max-width: 100%;
 }
 
-/* ── Profile Card ── */
 .profile-card {
     position: relative;
     overflow: hidden;
@@ -441,24 +401,18 @@ html, body {
     margin: 0;
 }
 
-/* ══════════════════════════════════════════
-   SHARED ANIMATIONS
-══════════════════════════════════════════ */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: none; }
 }
 
-/* ══════════════════════════════════════════
-   MOBILE FAB — floating terminal toggle button
-   Hidden on desktop; appears on tablet / phone.
-══════════════════════════════════════════ */
+
 .term-fab {
-    display: none; /* desktop: hidden */
+    display: none;
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
-    z-index: 650;  /* above backdrop + drawer */
+    z-index: 650;
     width: 52px; height: 52px;
     border-radius: 50%;
     background: #0a0a0a;
@@ -487,9 +441,6 @@ html, body {
     .term-fab { display: flex; }
 }
 
-/* ══════════════════════════════════════════
-   PROFILE PHOTO
-══════════════════════════════════════════ */
 .profile-avatar { position: relative; overflow: hidden; }
 .profile-avatar img {
     position: absolute;
@@ -502,9 +453,6 @@ html, body {
 }
 .profile-avatar img.loaded { opacity: 1; }
 
-/* ══════════════════════════════════════════
-   SKILLS TAB
-══════════════════════════════════════════ */
 .skills-section {
     display: flex;
     flex-direction: column;
@@ -951,6 +899,7 @@ html, body {
         flex-direction: column;
         height: calc(100vh - 54px);
         overflow: hidden;
+        position: static;   /* remove stacking context — toggle btn is hidden on mobile */
     }
 
     .profile-panel {
@@ -958,6 +907,9 @@ html, body {
         max-width: 100% !important;
         width: 100%;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;  /* momentum scroll on iOS */
+        touch-action: pan-y;                /* tell browser this axis scrolls — kills side dead-zones */
+        overscroll-behavior-y: contain;     /* fast swipe stays in panel, doesn't hit outer overflow:hidden wall */
         border-right: none;
     }
 
