@@ -229,8 +229,17 @@ const CMDS = {
 
     // ── projects ──────────────────────────────────
     projects() {
+        const projects = PORTFOLIO_DATA.projects;
         boxTop('PROJECTS');
-        line(`│  <span class="c-gray">// Coming soon — featured work will be listed here.</span>`);
+        projects.forEach((p, i) => {
+            line(`│  <span class="c-green">${p.name}</span>  <span class="c-yellow">[${p.status}]</span>`);
+            line(`│  <span class="c-gray">${p.desc}</span>`);
+            blank();
+            line(`│  <span class="c-cyan">Stack </span> ${p.stack.join(' · ')}`);
+            line(`│  <span class="c-cyan">Repo  </span> ${p.repo}`);
+            line(`│  <span class="c-cyan">Demo  </span> ${p.demo}`);
+            if (i < projects.length - 1) blank();
+        });
         boxBot();
         blank();
     },
@@ -424,7 +433,7 @@ async function bootTerminal() {
     // Logo appears immediately — not buffered
     LOGO.forEach(l => appendLine(l, 'c-green'));
     blank();
-    appendLine('  <span class="c-green">JWC Terminal</span>  <span class="c-gray">v1.0.1</span>');
+    appendLine('  <span class="c-green">JWC Terminal</span>  <span class="c-gray">v1.0.2</span>');
     appendLine(`  Type <span class="c-cyan">'help'</span> to see available commands.`, 'c-gray');
     blank();
 

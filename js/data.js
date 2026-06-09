@@ -75,5 +75,16 @@ const PORTFOLIO_DATA = {
         { name: 'Best Capstone in QA',                  issuer: 'Village88',                      year: '2023' }
     ],
 
+    projects: [
+        {
+            name:   'RAG Document Chat',
+            status: 'In Development',
+            stack:  ['Python', 'FastAPI', 'React', 'Tailwind', 'Claude API', 'Voyage AI', 'pgvector', 'Supabase'],
+            desc:   'Upload any PDF and chat with it using natural language. Chunks are embedded via Voyage AI, stored in pgvector, and retrieved with reranking before Claude streams a response.',
+            repo:   'github.com/notwestly/RAG-Project',
+            demo:   'rag.jhestly.com'
+        }
+    ],
+
     resume: 'assets/Resumes/Jhon_Westly_A_Carmelotes_Resume.pdf'
 };
