@@ -273,7 +273,7 @@ const CMDS = {
     // ── resume ────────────────────────────────────
     resume() {
         boxTop('RESUME');
-        line(`│  <span class="c-cyan">File    </span> : Jhon_Westly_A_Carmelotes_Resume.pdf`);
+        line(`│  <span class="c-cyan">File    </span> : Jhon Westly A. Carmelotes Resume.pdf`);
         blank();
         line(`│  <span class="c-gray">Download resume?  <span class="c-yellow">[ Y / N ]</span>  (default: N)</span>`);
         line(`│  <span class="c-gray">Type <span class="c-cyan">y</span> + Enter to download, or <span class="c-cyan">n</span> + Enter to cancel.</span>`);
@@ -353,7 +353,7 @@ async function runCmd(raw) {
             blank();
             const a = document.createElement('a');
             a.href = PORTFOLIO_DATA.resume;
-            a.download = 'Jhon_Westly_A_Carmelotes_Resume.pdf';
+            a.download = 'Jhon Westly A. Carmelotes Resume.pdf';
             a.target = '_blank';
             a.rel = 'noopener noreferrer';
             document.body.appendChild(a);

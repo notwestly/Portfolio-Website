@@ -86,5 +86,5 @@ const PORTFOLIO_DATA = {
         }
     ],
 
-    resume: 'assets/Resumes/Jhon_Westly_A_Carmelotes_Resume.pdf'
+    resume: 'assets/Resumes/Jhon%20Westly%20A.%20Carmelotes%20Resume.pdf'
 };

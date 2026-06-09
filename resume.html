@@ -197,14 +197,20 @@ const SH = {
   school: "Lyceum of Alabang",
   years: "2019 – 2023",
   degree: "Bachelor of Science in Computer Engineering",
+  project1: {
+    name: "RAG Document Chat App",
+    date: "2025 – Present",
+    tech: "FastAPI, React/Vite, Voyage AI, Supabase/pgvector, Claude API"
+  },
   // skill values + cert names stay in English (industry standard)
   skillVals: {
-    languages: "C#, Java, Python, PHP, JavaScript, SQL, C++",
-    frameworks: ".NET, Laravel, React.js, Node.js, jQuery, Bootstrap, REST APIs",
-    cloud: "AWS (EKS, S3, CloudWatch, Elastic Beanstalk), Kubernetes, CI/CD pipelines, Git, cloud migration",
-    databases: "SQL, database design, ORM, query optimization",
-    testing: "Unit testing, test automation, Selenium, Postman, manual testing",
-    methods: "Agile/Scrum, SDLC, OOP, enterprise release management, Lean Six Sigma (Yellow Belt)"
+    languages: "C#, Java, Python, PHP, JavaScript, SQL, C++, Tailwind",
+    frameworks: ".NET, ASP.NET MVC, Laravel, Node.js, Express.js, REST APIs, React.js, jQuery, Bootstrap",
+    cloud: "AWS (EKS, S3, CloudWatch, Elastic Beanstalk, Cognito, API Gateway), Kubernetes, CI/CD pipelines, Git",
+    databases: "SQL Server, MySQL, PostgreSQL, Supabase, pgvector",
+    testing: "Postman, Selenium, unit testing, test automation, manual testing",
+    methods: "Agile/Scrum, SDLC, OOP, Lean Six Sigma (Yellow Belt)",
+    tools: "Claude API, Voyage AI, RAG, Jira, Shell Script, Perl, Google Maps API"
   },
   certs: [
     ["Agentic Development using Cursor — Amdocs (CBS PSU)", "Jan 2026"],
@@ -212,8 +218,8 @@ const SH = {
     ["Agile & Scaled Agile Fundamentals — Amdocs", "Jan 2025"],
     ["ASEAN Youth for Digital Action (AYDA) — 189 hrs", "Jan 2025"],
     ["AWS re/Start — 300 hrs: Linux, Python, networking, security, core AWS", "Oct 2024"],
-    ["Lean Six Sigma Yellow Belt (Best Presenter) — Elevate", "Jul 2023"],
-    ["Full-Stack Web Development Bootcamp, 16 wks (Best in Capstone, QA) — Village88", "Apr 2023"]
+    ["Full-Stack Web Development Bootcamp, 16 wks (Best in Capstone, QA) — Village88", "Apr 2023"],
+    ["Lean Six Sigma Yellow Belt (Best Presenter) — Elevate", "Jul 2023"]
   ]
 };
 
@@ -223,19 +229,23 @@ const T = {
     role: "Software Engineer",
     loc: "Metro Manila, Philippines",
     summary_h: "Summary",
-    summary: "Software Engineer with nearly two years building and maintaining full-stack enterprise applications across .NET, C#, PHP, JavaScript, and SQL. Promoted from Junior within seven months; contributed to 14 production deployments, including 2 cloud migrations to AWS. Agile practitioner who ships reliably under deadline, mentors teammates, and ramps quickly on new stacks.",
+    summary: "Software Engineer with nearly two years building and maintaining full-stack enterprise applications across .NET, C#, Java, PHP, JavaScript, and SQL. Promoted from Junior within seven months; contributed to 14 production deployments, including 2 cloud migrations to AWS. Also builds personal projects using FastAPI, React, and AI APIs. Agile practitioner who ships reliably under deadline, mentors teammates, and ramps quickly on new stacks.",
     exp_h: "Experience",
-    place: "Ortigas, Pasig, Metro Manila",
+    proj_h: "Projects",
+    place: "Ortigas, Pasig",
     r1b: [
-      "Delivered an end-to-end full-stack enhancement to a live enterprise product within a 36 man-day deadline, owning architecture, development, testing, and deployment.",
-      "Served as primary backend developer across multiple concurrent projects, building services in .NET, C#, PHP, SQL, and JavaScript aligned to evolving business requirements.",
-      "Shipped 11 production deployments across 2025–2026 and provided post-deployment support on 4 releases, sustaining one for roughly three months given system scale.",
-      "Mentored 2 new hires through code reviews and technical guidance; scoped and negotiated requirements with project managers across Agile ceremonies and sprint reviews."
+      "Developed and maintained RESTful APIs and application features in Java, .NET/C#, PHP, JavaScript, and SQL across multiple concurrent enterprise projects, meeting evolving performance and security requirements.",
+      "Migrated on-premises SSIS jobs to AWS by building an event-driven task scheduler using Python, SNS, and CloudWatch, automating file-triggered processing workflows that previously required manual intervention.",
+      "Built customer-facing features including a QR-based registration flow (ASP.NET MVC) that automated profile population via internal APIs, and an address resolution tool integrating Google Maps Geocoding API to capture accurate coordinates and reduce field installation errors.",
+      "Shipped 11 production deployments across 2025–2026 and provided post-deployment support on 4 releases; mentored 2 new hires through code reviews and Agile sprint ceremonies."
     ],
     r2b: [
-      "Contributed to a large-scale cloud migration, moving legacy components to core AWS services across 2 cloud-migration deployments.",
-      "Developed and maintained application features in .NET and JavaScript within cloud-enabled architectures, meeting performance, reliability, and security standards.",
+      "Contributed to 3 production deployments including 2 large-scale AWS cloud migrations, migrating legacy application components and supporting transition to cloud-enabled architectures.",
+      "Developed and maintained application features in .NET and JavaScript within cloud-based systems, meeting performance, reliability, and security standards.",
       "Worked within enterprise Agile workflows and CI/CD pipelines through full production release."
+    ],
+    p1b: [
+      "Built a full-stack RAG application where users upload a PDF and query it in natural language. Voyage AI handles embeddings and reranking, Supabase/pgvector stores and searches document vectors, and Claude streams responses via a FastAPI backend with a React/Vite frontend."
     ],
     edu_h: "Education",
     honor: "Dean’s List · GPA 1.75 (90–92%)",
@@ -243,8 +253,9 @@ const T = {
     course: "Data Structures & Algorithms, Object-Oriented Programming, Database Management, Software Development, Web Development, Project Management.",
     skills_h: "Technical Skills",
     skillKeys: {
-      languages: "Languages", frameworks: "Frameworks & Libraries", cloud: "Cloud & DevOps",
-      databases: "Databases", testing: "Testing & QA", methods: "Methodologies"
+      languages: "Languages", frameworks: "Frameworks & APIs", cloud: "Cloud & DevOps",
+      databases: "Databases", testing: "Testing & QA", methods: "Methodologies",
+      tools: "Tools & AI"
     },
     cert_h: "Certifications & Professional Development",
     foot: "Interactive résumé · toggle theme & language above"
@@ -253,19 +264,23 @@ const T = {
     role: "Software Engineer",
     loc: "Metro Manila, Pilipinas",
     summary_h: "Buod",
-    summary: "Software Engineer na may halos dalawang taóng karanasan sa pagbuo at pagpapanatili ng full-stack enterprise applications gamit ang .NET, C#, PHP, JavaScript, at SQL. Na-promote mula Junior sa loob ng pitóng buwan; bahagi ng 14 na production deployments, kabilang ang 2 cloud migration papuntang AWS. Sanáy sa Agile, maaasahan sa paghahatid kahit may deadline, nagtuturò sa mga kasamahan, at mabilis matuto ng bagong tech stack.",
+    summary: "Software Engineer na may halos dalawang taóng karanasan sa pagbuo at pagpapanatili ng full-stack enterprise applications gamit ang .NET, C#, Java, PHP, JavaScript, at SQL. Na-promote mula Junior sa loob ng pitóng buwan; bahagi ng 14 na production deployments, kabilang ang 2 cloud migration papuntang AWS. Nagtatayo rin ng personal na proyekto gamit ang FastAPI, React, at AI APIs. Sanáy sa Agile, maaasahan sa paghahatid kahit may deadline, nagtuturò sa mga kasamahan, at mabilis matuto ng bagong tech stack.",
     exp_h: "Karanasan",
-    place: "Ortigas, Pasig, Metro Manila",
+    proj_h: "Mga Proyekto",
+    place: "Ortigas, Pasig",
     r1b: [
-      "Naghatid ng end-to-end full-stack enhancement sa isang live enterprise product sa loob ng 36 man-day na deadline — mula architecture, development, testing, hanggang deployment.",
-      "Naging pangunahing backend developer sa iba’t ibang sabay-sabay na proyekto; gumawa ng mga serbisyo sa .NET, C#, PHP, SQL, at JavaScript ayon sa nagbabagong business requirements.",
-      "Nag-ship ng 11 production deployments noong 2025–2026 at nagbigay ng post-deployment support sa 4 na release — inalagaan ang isa nang halos tatlong buwan dahil sa laki ng sistema.",
-      "Nag-mentor sa 2 bagong empleyado sa pamamagitan ng code review at teknikal na gabay; nakipag-usap sa mga project manager para i-scope ang requirements sa mga Agile ceremony at sprint review."
+      "Bumuo at nag-maintain ng mga RESTful API at application feature sa Java, .NET/C#, PHP, JavaScript, at SQL sa iba’t ibang sabay-sabay na enterprise project, naaabot ang nagbabagong pamantayan sa performance at security.",
+      "Nag-migrate ng on-premises SSIS jobs papuntang AWS sa pamamagitan ng event-driven task scheduler gamit ang Python, SNS, at CloudWatch, na nag-automate ng file-triggered processing workflows na dati ay kailangan ng manual na interbensyon.",
+      "Bumuo ng mga customer-facing feature kabilang ang QR-based registration flow (ASP.NET MVC) na nag-automate ng profile population via internal APIs, at isang address resolution tool na nag-integrate ng Google Maps Geocoding API para sa tamang coordinates.",
+      "Nag-ship ng 11 production deployments noong 2025–2026 at nagbigay ng post-deployment support sa 4 na release; nag-mentor sa 2 bagong empleyado sa pamamagitan ng code review at Agile sprint ceremonies."
     ],
     r2b: [
-      "Naging bahagi ng malakihang cloud migration; inilipat ang mga legacy component sa core AWS services sa 2 cloud-migration deployment.",
-      "Bumuo at nag-maintain ng mga application feature sa .NET at JavaScript sa loob ng cloud-enabled architecture, naaabot ang pamantayan sa performance, reliability, at security.",
+      "Naging bahagi ng 3 production deployments kabilang ang 2 malakihang AWS cloud migration, inilipat ang mga legacy component at sinuportahan ang paglipat sa cloud-enabled architecture.",
+      "Bumuo at nag-maintain ng mga application feature sa .NET at JavaScript sa loob ng cloud-based systems, naaabot ang pamantayan sa performance, reliability, at security.",
       "Nagtrabaho gamit ang enterprise Agile workflow at CI/CD pipeline hanggang sa ganáp na production release."
+    ],
+    p1b: [
+      "Nagtatag ng full-stack RAG application kung saan maaaring mag-upload ng PDF ang mga gumagamit at i-query ito sa natural na wika. Ang Voyage AI ang humahawak ng embeddings at reranking, ang Supabase/pgvector ang nag-iimbak at naghahanap ng document vectors, at ang Claude ang nag-stream ng mga tugon sa pamamagitan ng FastAPI backend na may React/Vite frontend."
     ],
     edu_h: "Edukasyon",
     honor: "Dean’s Lister · GPA 1.75 (90–92%)",
@@ -273,8 +288,9 @@ const T = {
     course: "Data Structures & Algorithms, Object-Oriented Programming, Database Management, Software Development, Web Development, Project Management.",
     skills_h: "Teknikal na Kasanayan",
     skillKeys: {
-      languages: "Mga Language", frameworks: "Frameworks at Libraries", cloud: "Cloud at DevOps",
-      databases: "Mga Database", testing: "Testing at QA", methods: "Mga Metodolohiya"
+      languages: "Mga Language", frameworks: "Frameworks at APIs", cloud: "Cloud at DevOps",
+      databases: "Mga Database", testing: "Testing at QA", methods: "Mga Metodolohiya",
+      tools: "Mga Tool at AI"
     },
     cert_h: "Mga Sertipikasyon at Propesyonal na Pag-unlad",
     foot: "Interactive na résumé · palitan ang tema at wika sa itaas"
@@ -292,7 +308,7 @@ function render() {
 
   const li = arr => arr.map(b => `<li>${esc(b)}</li>`).join("");
 
-  const skillOrder = ["languages","frameworks","cloud","databases","testing","methods"];
+  const skillOrder = ["languages","frameworks","cloud","databases","testing","methods","tools"];
   const skillsHtml = skillOrder.map(k =>
     `<div class="skill-row"><div class="k">${esc(t.skillKeys[k])}</div><div class="v">${esc(SH.skillVals[k])}</div></div>`
   ).join("");
@@ -327,24 +343,31 @@ function render() {
       <ul>${li(t.r2b)}</ul>
     </section>
 
-    <section class="reveal" style="animation-delay:.15s">
+    <section class="reveal" style="animation-delay:.13s">
+      <div class="sec-h">${esc(t.proj_h)}</div>
+      <div class="entry-top"><span class="org">${esc(SH.project1.name)}</span><span class="org-meta">${esc(SH.project1.date)}</span></div>
+      <div style="font-size:12.5px;color:var(--faint);font-family:'JetBrains Mono',monospace;margin-top:3px;">${esc(SH.project1.tech)}</div>
+      <ul>${li(t.p1b)}</ul>
+    </section>
+
+    <section class="reveal" style="animation-delay:.17s">
       <div class="sec-h">${esc(t.edu_h)}</div>
       <div class="edu-line"><span class="org">${esc(SH.school)}</span><span class="org-meta">${esc(SH.years)}</span></div>
       <div class="edu-sub">${esc(SH.degree)} — ${esc(t.honor)}</div>
       <div class="edu-course"><b>${esc(t.course_l)}</b> ${esc(t.course)}</div>
     </section>
 
-    <section class="reveal" style="animation-delay:.2s">
+    <section class="reveal" style="animation-delay:.21s">
       <div class="sec-h">${esc(t.skills_h)}</div>
       ${skillsHtml}
     </section>
 
-    <section class="reveal" style="animation-delay:.25s">
+    <section class="reveal" style="animation-delay:.26s">
       <div class="sec-h">${esc(t.cert_h)}</div>
       ${certsHtml}
     </section>
 
-    <div class="footnote reveal" style="animation-delay:.3s">${esc(t.foot)}</div>
+    <div class="footnote reveal" style="animation-delay:.31s">${esc(t.foot)}</div>
   `;
   document.documentElement.lang = lang;
 }
