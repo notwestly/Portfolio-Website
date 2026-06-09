@@ -1,0 +1,9 @@
+# Dev artifacts
+.playwright-mcp/
+
+# Internal docs / AI tooling
+docs/
+.claude/
+
+# Resume source files (DOCX not needed, only PDF is served)
+assets/Resumes/*.docx
